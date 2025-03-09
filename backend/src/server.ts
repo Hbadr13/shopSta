@@ -33,7 +33,7 @@ app.listen((port), () => {
 app.use(cors(
     {
         methods: ['GET', 'POST', 'DELETE', 'PUT'],
-        origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173'],
+        origin: ['http://localhost:3000', 'http://localhost:3001', 'https://shopsta.onrender.com/', 'http://localhost:5173'],
         allowedHeaders: [
             "Content-Type",
             "Authorization",
