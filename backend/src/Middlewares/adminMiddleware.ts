@@ -1,4 +1,4 @@
-import { IUser } from "@model/User";
+import { IUser } from "../../src/model/User";
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from 'jsonwebtoken'
 export const adminMiddleware: any = async (req: Request, res: Response, next: NextFunction) => {

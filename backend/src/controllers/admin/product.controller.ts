@@ -1,7 +1,7 @@
-import Product from "@model/product"
+// import Product from "../../src/model/product"
 import { Request, Response } from "express"
-// import { Cloudinary } from '@cloudinary/url-gen';
 import cloudinary from 'cloudinary'
+import Product from "../../model/product"
 
 export const addNewProduct = async (request: Request, response: Response): Promise<void> => {
     const { product } = request.body

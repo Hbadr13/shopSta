@@ -1,4 +1,4 @@
-import { getAllProductsShop, getProductByIdShop } from "@controllers/shop/shop.controller"
+import { getAllProductsShop, getProductByIdShop } from "../../controllers/shop/shop.controller"
 import { Router } from "express"
 
 const shopRouter = Router()

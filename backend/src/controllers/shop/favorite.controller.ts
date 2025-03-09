@@ -1,5 +1,5 @@
-import Favorite from "@model/Favorite";
-import Product from "@model/product";
+import Favorite from "../../model/Favorite";
+import Product from "../../model/product";
 import { Request, Response } from "express";
 
 export const addFavorite = async (request: Request, response: Response): Promise<any> => {

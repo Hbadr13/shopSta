@@ -1,4 +1,4 @@
-import Order from "@model/order";
+import Order from "../../model/order";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 
@@ -135,7 +135,6 @@ export const BayTheOrder = async (request: Request, response: Response): Promise
             order,
         });
     } catch (error) {
-        console.error("Payment processing error:", error);
         response.status(500).json({ success: false, message: "Server error, unable to process payment" });
     }
 
@@ -158,7 +157,6 @@ export const UpdateOrderStatus = async (request: Request, response: Response): P
 
         response.status(200).json({ success: true, message: "Order status updated", order });
     } catch (error) {
-        console.error("Update order error:", error);
         response.status(500).json({ success: false, message: "Server error" });
     }
 };

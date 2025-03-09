@@ -1,5 +1,5 @@
-import { addNewProduct, deleteProduct, getAllProducts, getProductById } from "@controllers/admin/product.controller";
-import userRouter from "@routes/user/user.route";
+import { addNewProduct, deleteProduct, getAllProducts, getProductById } from "../../controllers/admin/product.controller";
+import userRouter from "../../routes/user/user.route";
 import { Router } from "express";
 const adminRouter = Router()
 

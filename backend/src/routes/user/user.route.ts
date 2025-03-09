@@ -1,7 +1,6 @@
-import { checkAuth, loginUser, logoutUser, registerUser } from "@controllers/auth/auth.controller";
-import { Router, Request, Response, NextFunction } from "express";
-import { JwtPayload } from "jsonwebtoken";
-import { authMiddleware } from "src/Middlewares/authMiddleware";
+import { Router } from "express";
+import { checkAuth, loginUser, logoutUser, registerUser } from "../../controllers/auth/auth.controller";
+import { authMiddleware } from "../../Middlewares/authMiddleware";
 
 const userRouter = Router();
 

@@ -1,4 +1,4 @@
-import { BayTheOrder, CreateOrder, GetConfirmationByUser, GetOrdersByUser } from "@controllers/shop/order.controller";
+import { BayTheOrder, CreateOrder, GetConfirmationByUser, GetOrdersByUser } from "../../controllers/shop/order.controller";
 import { Router } from "express";
 
 const orderRouter = Router()

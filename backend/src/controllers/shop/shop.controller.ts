@@ -1,4 +1,4 @@
-import Product from "@model/product"
+import Product from "../../model/product"
 import { Request, Response } from "express"
 export const getAllProductsShop = async (request: Request, response: Response): Promise<void> => {
     const products = await Product.find()
@@ -9,7 +9,6 @@ export const getAllProductsShop = async (request: Request, response: Response): 
 }
 export const getProductByIdShop = async (request: Request, response: Response): Promise<void> => {
     try {
-        console.log('hello')
         const { id } = request.params
         const product = await Product.findById(id);
         if (!product || !id) {

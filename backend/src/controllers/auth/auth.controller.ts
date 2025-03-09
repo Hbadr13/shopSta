@@ -1,5 +1,5 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
-import User from "@model/User";
+import User from "../../model/User";
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken'
 export const registerUser = async (request: Request, response: Response): Promise<void> => {
