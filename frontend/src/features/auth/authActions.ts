@@ -28,22 +28,43 @@ export const logout = createAsyncThunk('logout', async () => {
     return response.data;
 })
 
+// export const checkAuth = createAsyncThunk(
+//     "/auth/checkauth",
+
+//     async () => {
+//         const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+//         const response = await axios.get(
+//             `${baseURL}/api/v1/auth/check-auth`,
+//             {
+//                 withCredentials: true,
+//                 headers: {
+//                     "Cache-Control":
+//                         "no-store, no-cache, must-revalidate, proxy-revalidate",
+//                 },
+//             }
+//         );
+
+//         return response.data;
+//     }
+// );
+
 export const checkAuth = createAsyncThunk(
     "/auth/checkauth",
-
     async () => {
         const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
-        const response = await axios.get(
-            `${baseURL}/api/v1/auth/check-auth`,
-            {
-                withCredentials: true,
-                headers: {
-                    "Cache-Control":
-                        "no-store, no-cache, must-revalidate, proxy-revalidate",
-                },
-            }
-        );
 
-        return response.data;
+        const response = await fetch(`${baseURL}/api/v1/auth/check-auth`, {
+            method: "GET",
+            credentials: "include", // Ensure cookies are sent
+            headers: {
+                "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch auth data');
+        }
+
+        return response.json(); // Parse and return the response as JSON
     }
 );
