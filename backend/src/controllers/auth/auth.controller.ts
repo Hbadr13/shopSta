@@ -82,16 +82,23 @@ export const loginUser = async (request: Request, response: Response) => {
             expiresIn: "60d",
         }
     );
-    response.cookie("token", token, { httpOnly: true, secure: true, sameSite: "strict" }).json({
-        success: true,
-        message: "Logged in successfully",
-        user: {
-            email: user.email,
-            role: user.role,
-            id: user._id,
-            userName: user.userName,
-        },
-    });
+    response.cookie("token", token,
+        {
+            httpOnly: true,
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            secure: process.env.NODE_ENV === "production",
+            domain: process.env.NODE_ENV === "production" ? "shop-sta.vercel.app" : "localhost",
+        }).json({
+            success: true,
+            message: "Logged in successfully",
+            user: {
+                email: user.email,
+                role: user.role,
+                id: user._id,
+                userName: user.userName,
+            },
+        });
 }
 
 

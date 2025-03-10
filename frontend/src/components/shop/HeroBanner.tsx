@@ -42,30 +42,30 @@ const HeroBanner = () => {
             <Swiper className='z-0 relative w-screen' modules={[Virtual]} spaceBetween={0} slidesPerView={1} virtual>
                 {slides.map((slideContent, index) => (
                     <SwiperSlide className=' ' key={slideContent.category} virtualIndex={index}>
-                        <div className="flex flex-1 flex-col lg:flex-row h-full">
+                        <div className="flex flex-1 flex-col md:flex-row h-full">
 
-                            <div className="relative  w-full lg:w-1/2  aspect-auto">
+                            <div className="relative  w-full md:w-1/2  aspect-auto">
                                 <Image
 
                                     src={slideContent.image}
                                     alt="man"
                                     width={1000}
                                     height={1000}
-                                    className="w-full  aspect-auto   max-h-[200px] lg:max-h-[950px] object-cover"
+                                    className="w-full  aspect-auto   max-h-[200px] md:max-h-[950px] object-cover"
                                 />
                             </div>
 
-                            <div className="flex-1 w-full lg:w-1/2  text-white  justify-center   bg-store-hero lg:space-y-5 space-y-10  pl-2 lg:pl-20 flex flex-col pt-[2vw] ">
+                            <div className="flex-1 w-full md:w-1/2  text-white  justify-center   bg-store-hero md:space-y-5 space-y-10  pl-2 md:pl-20 flex flex-col pt-[2vw] ">
                                 <div className="text-xl md:text-2xl text-store-gray-500">
                                     {slideContent.shorDescription}
                                 </div>
                                 <div className="text-2xl md:text-3xl lg:text-5xl xl:text-7xl fontfamily2 font-medium   ">
                                     {slideContent.description}
                                 </div>
-                                <Link className=' w-36 h-9 lg:w-40  lg:h-12 bg-store-footer-hover flex justify-center items-center' href={slideContent.slug}>
+                                <Link className=' w-36 h-9 md:w-40  md:h-12 bg-store-footer-hover flex justify-center items-center' href={slideContent.slug}>
                                     SHOP NOW
                                 </Link>
-                                <div className="block lg:hidden h-20">
+                                <div className="block md:hidden h-20">
 
                                 </div>
                                 {/* <div className=" block lg:hidden space-x-3 text-xl py-4">

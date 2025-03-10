@@ -1,18 +1,19 @@
-import express from 'express'
-import { Express } from 'express'
-import dotenv from 'dotenv'
-import mongoose from 'mongoose'
-import cors from 'cors'
-import cookieParser from "cookie-parser";
-import { JwtPayload } from 'jsonwebtoken';
-import { authMiddleware } from './Middlewares/authMiddleware';
 import { adminMiddleware } from './Middlewares/adminMiddleware';
-import cloudinary from 'cloudinary'
-import userRouter from './routes/user/user.route'
-import adminRouter from './routes/admin/admin.roure'
+import { authMiddleware } from './Middlewares/authMiddleware';
+import favoriteRouter from './routes/shop/favorite.routes';
+import adminRouter from './routes/admin/admin.roure';;
+import orderRouter from './routes/shop/order.route';
 import shopRouter from './routes/shop/shop.router'
-import favoriteRouter from './routes/shop/favorite.routes'
-import orderRouter from './routes/shop/order.route'
+import userRouter from './routes/user/user.route'
+import { JwtPayload } from 'jsonwebtoken';
+import cookieParser from "cookie-parser";
+import cloudinary from 'cloudinary'
+import { Express } from 'express'
+import mongoose from 'mongoose'
+import express from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
+
 dotenv.config()
 cloudinary.v2.config({
     cloud_name: process.env.REACT_APP_CLOUD_NAME,
@@ -55,7 +56,7 @@ declare global {
 app.use(cookieParser());
 app.use(express.json())
 
-// routing
+// 
 app.use('/api/v1/auth', userRouter)
 app.use('/api/v1/admin', adminMiddleware, adminRouter)
 app.use('/api/v1/shop', shopRouter)
