@@ -39,36 +39,51 @@ const HeroBanner = () => {
 
     return (
         <div className="w-full relative overflow-hidden ">
-            <Swiper className='z-0 relative h-[3 0vh] md:h-[70vh] max-h-[800px] w-screen' modules={[Virtual]} spaceBetween={0} slidesPerView={1} virtual>
+            <Swiper className='z-0 relative w-screen' modules={[Virtual]} spaceBetween={0} slidesPerView={1} virtual>
                 {slides.map((slideContent, index) => (
                     <SwiperSlide className=' ' key={slideContent.category} virtualIndex={index}>
-                        <div className="flex  h-full">
+                        <div className="flex flex-1 flex-col lg:flex-row h-full">
 
-                            <div className="relative h-full w-1/2">
+                            <div className="relative  w-full lg:w-1/2  aspect-auto">
                                 <Image
+
                                     src={slideContent.image}
                                     alt="man"
-                                    fill
-                                    className="object-cover"
+                                    width={1000}
+                                    height={1000}
+                                    className="w-full  aspect-auto   max-h-[200px] lg:max-h-[950px] object-cover"
                                 />
                             </div>
 
-                            <div className=" h-full w-1/2 text-white  bg-store-hero space-y-5 pl-20 flex flex-col pt-[2vw] ">
+                            <div className="flex-1 w-full lg:w-1/2  text-white  justify-center   bg-store-hero lg:space-y-5 space-y-10  pl-2 lg:pl-20 flex flex-col pt-[2vw] ">
                                 <div className="text-xl md:text-2xl text-store-gray-500">
                                     {slideContent.shorDescription}
                                 </div>
-                                <div className="text3xl md:text-[5vw] fontfamily2 font-medium  leading-[80px]  ">
+                                <div className="text-2xl md:text-3xl lg:text-5xl xl:text-7xl fontfamily2 font-medium   ">
                                     {slideContent.description}
                                 </div>
-                                <Link className='w-40 h-12 bg-store-footer-hover flex justify-center items-center' href={slideContent.slug}>
+                                <Link className=' w-36 h-9 lg:w-40  lg:h-12 bg-store-footer-hover flex justify-center items-center' href={slideContent.slug}>
                                     SHOP NOW
                                 </Link>
+                                <div className="block lg:hidden h-20">
+
+                                </div>
+                                {/* <div className=" block lg:hidden space-x-3 text-xl py-4">
+                                    {
+                                        slides.map((it, index) =>
+                                            <button
+                                                key={index}
+                                                onClick={() => setAudience(it.category)}
+                                                className={`${audience == it.category ? 'text-store-footer-hover border-b-1 border-store-footer-hover' : 'text-white'}`}  >{it.category}</button>
+                                        )
+                                    }
+                                </div> */}
                             </div>
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="absolute z-10  bottom-[2vw]  -right-20 w-1/2 space-x-3 text-xl">
+            <div className="absolute z-10  bottom-2  w-max right-2   lg:bottom-[4vw]  hiddenlg:block  lg:-right-20  lg:w-1/2 space-x-3 text-xl">
                 {
                     slides.map((it, index) =>
                         <button

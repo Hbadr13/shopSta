@@ -45,7 +45,7 @@ const AdditionalProductDetails = ({ product }: { product: Product }) => {
                     </button>
                 ))}
             </div>
-            <div className="mt-4 p-0 md:p-4 text-gray-700">
+            <div className="mt-4 p-0 md:py-20 text-gray-700">
                 {activeTab === "Description" && (
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
                         <div className="relative w-full max-w-xs mx-auto md:mx-0 aspect-square bg-red-50 rounded-full overflow-hidden">

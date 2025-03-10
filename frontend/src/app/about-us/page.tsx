@@ -79,7 +79,7 @@ const TeamMemberCard = ({ name, role, imgSrc, email, linkedin }: (typeof teamMem
 );
 
 const FeatureCard = ({ title, description, icon }: (typeof features)[0]) => (
-    <motion.div variants={fadeInUp} className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+    <motion.div variants={fadeInUp} className="text-center p-6 bg-white rounded-lg shadow hover:shadow transition-shadow">
         {icon}
         <h3 className="mt-4 text-xl font-semibold">{title}</h3>
         <p className="mt-2 text-gray-600">{description}</p>
@@ -88,7 +88,7 @@ const FeatureCard = ({ title, description, icon }: (typeof features)[0]) => (
 
 export default function AboutUsPage() {
     return (
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="">
             {/* Hero Section */}
             <motion.div
                 initial="hidden"
@@ -105,37 +105,40 @@ export default function AboutUsPage() {
             </motion.div>
 
             {/* Our Story */}
-            <motion.div initial="hidden" whileInView="visible" variants={fadeInUp} transition={{ duration: 0.8 }} className="mt-16">
-                <h2 className="text-3xl font-bold text-center">Our Story</h2>
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <motion.div variants={fadeInUp} transition={{ duration: 0.8, delay: 0.2 }}>
-                        <p className="text-gray-600">
-                            At Shopsta, we believe in providing our customers with the best shopping experience. Founded in 2023 by Hamza Badr, our mission is to
-                            offer high-quality products at affordable prices while maintaining a strong commitment to sustainability and ethical practices.
-                        </p>
-                        <p className="mt-4 text-gray-600">
-                            From humble beginnings as a small online store, we{`'`}ve grown into a trusted name in the e-commerce industry. Our journey has
-                            been fueled by a passion for innovation and a dedication to customer satisfaction.
-                        </p>
-                    </motion.div>
-                    <motion.div variants={fadeInUp} transition={{ duration: 0.8, delay: 0.2 }} className="rounded-lg overflow-hidden">
-                        <Image src="/man1.png" alt="Our Story" width={600} height={400} className="w-full h-full object-cover" />
-                    </motion.div>
-                </div>
-            </motion.div>
+            <div className="max-w-7xl mx-auto px-4 py-8">
 
-            {/* Our Team */}
-            <div className="mt-16">
-                <h2 className="text-3xl font-bold text-center">Our Team</h2>
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {teamMembers.map((member, index) => (
-                        <TeamMemberCard key={index} {...member} />
-                    ))}
+                <motion.div initial="hidden" whileInView="visible" variants={fadeInUp} transition={{ duration: 0.8 }} className="mt-16">
+                    <h2 className="text-3xl font-bold text-center">Our Story</h2>
+                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <motion.div variants={fadeInUp} transition={{ duration: 0.8, delay: 0.2 }}>
+                            <p className="text-gray-600">
+                                At Shopsta, we believe in providing our customers with the best shopping experience. Founded in 2023 by Hamza Badr, our mission is to
+                                offer high-quality products at affordable prices while maintaining a strong commitment to sustainability and ethical practices.
+                            </p>
+                            <p className="mt-4 text-gray-600">
+                                From humble beginnings as a small online store, we{`'`}ve grown into a trusted name in the e-commerce industry. Our journey has
+                                been fueled by a passion for innovation and a dedication to customer satisfaction.
+                            </p>
+                        </motion.div>
+                        <motion.div variants={fadeInUp} transition={{ duration: 0.8, delay: 0.2 }} className="rounded-lg overflow-hidden">
+                            <Image src="/man1.png" alt="Our Story" width={600} height={400} className="w-full h-full object-cover" />
+                        </motion.div>
+                    </div>
+                </motion.div>
+
+                {/* Our Team */}
+                <div className="mt-16">
+                    <h2 className="text-3xl font-bold text-center">Our Team</h2>
+                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {teamMembers.map((member, index) => (
+                            <TeamMemberCard key={index} {...member} />
+                        ))}
+                    </div>
                 </div>
             </div>
-
+            <div className="w-full h-20 border-b"></div>
             {/* Why Choose Us? */}
-            <div className="mt-16">
+            <div className="mt-36 lg:mt-44 max-w-[1700px] mx-auto px-4 py-8">
                 <h2 className="text-3xl font-bold text-center">Why Choose Us?</h2>
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {features.map((feature, index) => (
@@ -145,7 +148,7 @@ export default function AboutUsPage() {
             </div>
 
             {/* Call to Action */}
-            <motion.div initial="hidden" whileInView="visible" variants={fadeInUp} transition={{ duration: 0.8 }} className="mt-16 text-center py-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+            <motion.div initial="hidden" whileInView="visible" variants={fadeInUp} transition={{ duration: 0.8 }} className="mt-20 lg:mt-32 text-center py-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
                 <h2 className="text-3xl font-bold">Ready to Explore?</h2>
                 <p className="mt-4 text-lg text-gray-600">Discover our collection of products and experience the Shopsta difference.</p>
                 <Button className="mt-6 bg-black text-white h-12 rounded-full px-8">

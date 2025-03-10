@@ -26,7 +26,7 @@ const links = [
     {
         title: "Information",
         items: [
-            { name: "About us", href: "/about" },
+            { name: "About us", href: "/about-us" },
             { name: "Contact us", href: "/contact" },
             { name: "FAQs", href: "/faqs" },
             { name: "Privacy policy", href: "/privacy-policy" },

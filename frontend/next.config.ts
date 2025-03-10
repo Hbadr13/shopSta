@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   experimental: {
   },
   images: {
-    domains: ['res.cloudinary.com', 'erona-demo.myshopify.com']
+    domains: ['res.cloudinary.com', 'erona-demo.myshopify.com', 'randomuser.me']
   }
 };
 
