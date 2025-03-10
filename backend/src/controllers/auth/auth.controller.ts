@@ -86,6 +86,9 @@ export const loginUser = async (request: Request, response: Response) => {
             httpOnly: true,
             sameSite: "strict",
             maxAge: 7 * 24 * 60 * 60 * 1000,
+            path: '/',
+            // sameSite: "none",
+
             secure: process.env.NODE_ENV === "production",
             domain: process.env.NODE_ENV === "production" ? "shop-sta.vercel.app" : "localhost",
         }).json({

@@ -55,6 +55,8 @@ declare global {
 }
 app.use(cookieParser());
 app.use(express.json())
+app.set('trust proxy', 1) // trust first proxy
+
 
 // 
 app.use('/api/v1/auth', userRouter)
