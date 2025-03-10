@@ -75,7 +75,6 @@ export const loginUser = async (request: Request, response: Response) => {
             email: user.email,
             userName: user.userName,
             role: user.role
-
         },
         process.env.CLIENT_SECRET_KEY,
         {
@@ -100,7 +99,6 @@ export const loginUser = async (request: Request, response: Response) => {
             },
         });
 }
-
 
 export const logoutUser = (request: Request, response: Response) => {
     response.clearCookie('token').json({
