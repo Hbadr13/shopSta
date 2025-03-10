@@ -32,20 +32,38 @@ app.listen((port), () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
 })
 
-app.use(cors(
-    {
-        methods: ['GET', 'POST', 'DELETE', 'PUT'],
-        origin: ['http://localhost:3000', 'http://localhost:3001', 'https://shop-sta.vercel.app', 'http://localhost:5173'],
-        allowedHeaders: [
-            "Content-Type",
-            "Authorization",
-            "Cache-Control",
-            "Expires",
-            "Pragma",
-        ],
-        credentials: true,
-    }
-))
+app.use(cors({
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    origin: [
+        'http://localhost:3000',
+        'http://localhost:3001',
+        'https://shop-sta.vercel.app',
+        'http://localhost:5173',
+    ],
+    allowedHeaders: [
+        "Content-Type",
+        "Authorization",
+        "Cache-Control",
+        "Expires",
+        "Pragma",
+    ],
+    credentials: true, // Allow credentials (cookies)
+}));
+
+// app.use(cors(
+//     {
+//         methods: ['GET', 'POST', 'DELETE', 'PUT'],
+//         origin: ['http://localhost:3000', 'http://localhost:3001', 'https://shop-sta.vercel.app', 'http://localhost:5173'],
+//         allowedHeaders: [
+//             "Content-Type",
+//             "Authorization",
+//             "Cache-Control",
+//             "Expires",
+//             "Pragma",
+//         ],
+//         credentials: true,
+//     }
+// ))
 declare global {
     namespace Express {
         interface Request {
