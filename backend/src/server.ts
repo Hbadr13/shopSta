@@ -20,7 +20,7 @@ cloudinary.v2.config({
     api_key: process.env.REACT_APP_API_KEY,
     api_secret: process.env.REACT_APP_API_SECRET
 })
-
+console.log('\n\nhello process.env.NODE_ENV', process.env.NODE_ENV)
 const monogodb_url: string = process.env.MONGODB_URL || ''
 mongoose.connect(monogodb_url, {}).then(() => {
 }).catch((error) => {
