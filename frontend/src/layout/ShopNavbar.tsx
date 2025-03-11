@@ -14,6 +14,7 @@ import { logout } from "@/features/auth/authActions";
 import { VscAccount } from "react-icons/vsc";
 import ShopNavigationMenuDemo from "./ShopNavigationMenuDemo";
 import Image from "next/image";
+import { getCookie } from "cookies-next/client";
 const UserCard = () => {
     const dispatch = useAppDispatch()
     const { user } = useAppSelector((state) => state.auth)
@@ -65,6 +66,7 @@ const ShopNavbar = () => {
     }
     return (
         <nav className=" shado">
+            ={getCookie('token')}=
             <div className="flex items-center justify-between py-4 px-1.5 md:px-12 bg-white">
                 <CartPopup />
                 <Link className="text-2xl md:text-3xl font-extrabold" href="/">
