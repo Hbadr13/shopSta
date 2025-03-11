@@ -39,7 +39,7 @@ const Page = () => {
                     endContent={<BiSearch className="w-5 h-5" />}
                 />
 
-                <Link href={'/admin/add-product'}
+                <Link href={'/admin/products/add'}
                     className="w-52 h-12 rounded-xl space-x-2 flex justify-center items-center border border-eco-blue-v0 font-semibold text-eco-blue-v0 hover:text-white hover:bg-eco-blue-v0 duration-200">
                     <FiPlus className="w-5 h-5" />
                     <div className="text-lg">

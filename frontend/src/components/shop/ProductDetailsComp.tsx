@@ -155,7 +155,7 @@ const ProductDetailsComp = ({ product, type }: { product: Product, type: 'page' 
 
                             onPress={() => setSelectSize(size)}
                             key={index}
-                            className={` ${selectSize == size ? 'border-store-gray-900' : 'border-store-gray-300'} bg-white border-[1.3px]  hover:border-store-gray-900 duration-300 text-store-dark text-large  mr-2 px-5 py-2 rounded-md`}>
+                            className={`active:opacity-60 transition-all duration-200 ${selectSize == size ? 'border-store-gray-900' : 'border-store-gray-300'} bg-white border-[1.3px]  hover:border-store-gray-900 duration-300 text-store-dark text-large  mr-2 px-5 py-2 rounded-md`}>
                             {size}
                         </Button>
                     ))}
@@ -168,16 +168,16 @@ const ProductDetailsComp = ({ product, type }: { product: Product, type: 'page' 
                                 size='sm'
                                 onPress={() => setSelectColor(color)}
                                 key={index}
-                                className={`  ${color == selectColor ? 'border-store-gray-600 border-separate border-3' : 'border'} w-8 opacity-70 rounded-md`}
+                                className={`active:opacity-60 transition-all duration-200  ${color == selectColor ? 'border-store-gray-600 border-separate border-3' : 'border'} w-8 opacity-70 rounded-md`}
                                 style={{ backgroundColor: color }}
                             />
                         ))}
                     </div>
                 </div>
                 <div className=" mt-7 flex items-center space-x-2 border rounded-xl w-max">
-                    <Button disabled={quantity == 1} variant='light' size="md" onPress={quantity > 1 ? () => setquantity((prv) => prv - 1) : undefined} className={quantity ? '' : ' cursor-not-allowed'}>-</Button>
+                    <Button disabled={quantity == 1} variant='light' size="md" onPress={quantity > 1 ? () => setquantity((prv) => prv - 1) : undefined} className={`active:opacity-60 transition-all duration-200 ${quantity ? '' : ' cursor-not-allowed'}`}>-</Button>
                     <span className="px-4">{quantity}</span>
-                    <Button variant='light' size="md" onPress={() => setquantity((prv) => prv + 1)}>+</Button>
+                    <Button className='active:opacity-60 transition-all duration-200' variant='light' size="md" onPress={() => setquantity((prv) => prv + 1)}>+</Button>
                 </div>
 
                 <div className="mt-6 flex flex-col space-y-2">

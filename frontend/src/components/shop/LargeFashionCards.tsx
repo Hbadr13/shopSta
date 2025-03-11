@@ -8,7 +8,7 @@ const GenderCard = ({ description, image, url, type }: { description: string, im
             <Image className=' z-0 relative object-cover ' fill alt='man' src={image} />
             <div className={` absolute  inset-y-0 w-1/2  flex flex-col justify-center ${type == 'man' ? 'right-0 items-start' : "left-0 items-end"} space-y-5 md:space-y-10 z-10`}>
                 <div className={`  fontfamily2 text-[#222222]  font-[600] text-2xl xs:text-3xl md:text-4xl lg:text-6xl  ${type == 'man' ? 'text-start' : "text-end"} `}>{description}</div>
-                <button className='px-2 py-1 text-base xs:text-lg md:px-4 md:py-2 md:text-xl font-medium w-max  bg-store-footer-hover text-white hover:bg-store-gray-800 duration-300'>
+                <button className='active:opacity-60 transition-all duration-200 px-2 py-1 text-base xs:text-lg md:px-4 md:py-2 md:text-xl font-medium w-max  bg-store-footer-hover text-white hover:bg-store-gray-800 duration-300'>
                     SHOP NOW
                 </button>
 
@@ -29,7 +29,7 @@ const LargeFashionCards = () => {
                     <Image className=' z-0 relative object-cover ' fill alt='man' src={'/kid3.png'} />
                     <div className={` absolute   inset-x-0 p-5 md:p-10 flex space-x-5 items-start justify-center z-10`}>
                         <div className={`  fontfamily2  text-2xl xs:text-3xl md:text-4xl lg:text-6xl  text-start  text-[#222222]  font-[600]`}>kids{`'`}is fashion</div>
-                        <button className='px-2 py-1 text-base xs:text-lg md:px-4 md:py-2 md:text-xl font-medium w-max  bg-store-footer-hover text-white hover:bg-store-gray-800 duration-300'>
+                        <button className='active:opacity-60 transition-all px-2 py-1 text-base xs:text-lg md:px-4 md:py-2 md:text-xl font-medium w-max  bg-store-footer-hover text-white hover:bg-store-gray-800 duration-300'>
                             SHOP NOW
                         </button>
 

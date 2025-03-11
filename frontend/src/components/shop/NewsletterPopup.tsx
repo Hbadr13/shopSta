@@ -41,7 +41,7 @@ const NewsletterPopup = () => {
                 className="bg-white rounded-lg shadow-lg w-full max-w-xl relative overflow-hidden">
                 <button
                     onClick={handleClose}
-                    className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
+                    className="active:opacity-60 transition-all duration-200 absolute top-4 right-4 text-gray-600 hover:text-gray-800"
                 >
                     <X size={24} />
                 </button>
@@ -61,7 +61,7 @@ const NewsletterPopup = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <button className=" bg-store-footer-hover text-white p-3 rounded-r hover:opacity-80 duration-200 active:opacity-60">
+                        <button className="active:opacity-60 transition-all duration-200 bg-store-footer-hover text-white p-3 rounded-r hover:opacity-80 duration-200 active:opacity-60">
                             Subscribe
                         </button>
                     </div>
@@ -73,14 +73,14 @@ const NewsletterPopup = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <button className="w-full mt-4 bg-blue-500 text-white p-2 md:p-3 rounded hover:bg-blue-600">
+                        <button className="active:opacity-60 transition-all duration-200 w-full mt-4 bg-blue-500 text-white p-2 md:p-3 rounded hover:bg-blue-600">
                             Subscribe
                         </button>
                     </div>
                     <div className="mt-4 flex items-center">
                         <button
                             onClick={handleHidePopup}
-                            className="w-full mt-2 flex items-center space-x-1"
+                            className="active:opacity-60 transition-all duration-200 w-full mt-2 flex items-center space-x-1"
                         >
                             <input className="w-4 h-4 md:w-5 md:h-5 border-0 cursor-pointer" type="checkbox" />
                             <div className=" text-sm md:text-base">

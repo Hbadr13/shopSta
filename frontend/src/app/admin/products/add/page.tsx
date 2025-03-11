@@ -47,7 +47,7 @@ const Page = () => {
         if (!selectedImages.length || addProductFormElements.filter((element) => element.items.filter((item) => item.isRequired && !formData[item.name]?.length).length).length) {
             addToast({
                 title: 'Please fill in the required fields.',
-                timeout: 2000,
+                timeout: 3000,
                 color: 'danger',
                 shouldShowTimeoutProgress: true
             })
@@ -82,7 +82,7 @@ const Page = () => {
                 addToast({
                     title: 'Product add successfully',
                     description: formData.title,
-                    timeout: 2000,
+                    timeout: 3000,
                     color: 'success',
                     shouldShowTimeoutProgress: true
 

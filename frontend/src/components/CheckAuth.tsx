@@ -19,9 +19,10 @@ const CheckAuth = ({ children }: { children: ReactNode }) => {
         if (pathname.startsWith("/admin")) {
             if (!user) {
                 router.replace("/auth/login");
-            } else if (user.role === "admin" && pathname !== "/admin/dashboard") {
-                router.replace("/admin/dashboard");
             }
+            // else if (user.role === "admin" && pathname !== "/admin/dashboard") {
+            //     router.replace("/admin/dashboard");
+            // }
         }
     }, [user, isLoading, router, pathname]);
 

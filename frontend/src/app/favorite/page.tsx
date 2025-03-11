@@ -73,7 +73,7 @@ const FavoriteProducts: React.FC = () => {
                                             <Link href={`/product/${product._id}`} className="bg-store-dark text-white flex justify-center items-center w-full h-11 rounded-xl text-lg font-medium hover:bg-store-dark/90 active:bg-store-dark/80 duration-200">
                                                 Buy Now
                                             </Link>
-                                            <Button onClick={() => handelRemoveFromFav(product._id)} className="h-11 text-lg rounded-xl font-medium">
+                                            <Button onClick={() => handelRemoveFromFav(product._id)} className="active:opacity-60 transition-all duration-200 h-11 text-lg rounded-xl font-medium">
                                                 <Heart className="scale-150 fill-store-danger text-store-danger" />
                                             </Button>
                                         </div>

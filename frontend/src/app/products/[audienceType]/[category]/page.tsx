@@ -114,7 +114,7 @@ export default function ProductPage() {
                 <h2 className="text-xl font-semibold flex items-center gap-2">
                     <FiFilter /> Filters
                 </h2>
-                <Button variant="outline" size="sm" onClick={resetFilters}>
+                <Button className="active:opacity-60 transition-all duration-200" variant="outline" size="sm" onClick={resetFilters}>
                     <FiX className="mr-1" /> Clear all
                 </Button>
             </div>
@@ -127,6 +127,7 @@ export default function ProductPage() {
                             <div className="flex flex-wrap gap-2 p-2">
                                 {filter.options?.map((option) => (
                                     <Button
+                                        className="active:opacity-60 transition-all duration-200"
                                         key={option.id}
                                         variant={
                                             filters[filter.name].includes(option.id)
@@ -175,7 +176,7 @@ export default function ProductPage() {
                 </AccordionItem>
             </Accordion>
 
-            <Button variant="outline" onClick={handleApplyFilters} className="mt-4 hover:bg-slate-100 font-medium duration-200 active:opacity-50 w-full">
+            <Button variant="outline" onClick={handleApplyFilters} className=" transition-all mt-4 hover:bg-slate-100 font-medium duration-200 active:opacity-50 w-full">
                 Apply Filters
             </Button>
         </div>
@@ -186,7 +187,7 @@ export default function ProductPage() {
             <div className="block lg:hidden">
                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
-                        <Button variant="outline" className="mb-4 w-full">
+                        <Button variant="outline" className="active:opacity-60 transition-all duration-200 mb-4 w-full">
                             <FiFilter className="mr-2" /> Filters
                         </Button>
                     </SheetTrigger>

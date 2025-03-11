@@ -33,7 +33,7 @@ export default function OrderReviewPage() {
                             addToast({
                                 title: 'Order has already been paid',
                                 description: `Order Id: ${orderId}`,
-                                timeout: 1500,
+                                timeout: 3000,
                                 color: "success",
                                 shouldShowTimeoutProgress: true
 
@@ -51,7 +51,7 @@ export default function OrderReviewPage() {
                         title: state.payload.message,
                         description: `Order Id: ${orderId}`,
                         color: "danger",
-                        timeout: 1500,
+                        timeout: 3000,
                         shouldShowTimeoutProgress: true
                     })
 
@@ -185,14 +185,14 @@ export default function OrderReviewPage() {
                     <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <Button
                             disabled={paymentInProgress}
-                            className="w-full bg-gray-600 text-white h-14 rounded-full flex items-center justify-center"
+                            className="active:opacity-60 transition-all duration-200 w-full bg-gray-600 text-white h-14 rounded-full flex items-center justify-center"
                             onClick={() => router.push(`/checkout/order/${order._id}/edit`)}
                         >
                             <FiEdit className="mr-2" /> Edit Order
                         </Button>
                         <Button
                             disabled={paymentInProgress}
-                            className="w-full bg-blue-600 text-white h-14 rounded-full flex items-center justify-center"
+                            className="active:opacity-60 transition-all duration-200 w-full bg-blue-600 text-white h-14 rounded-full flex items-center justify-center"
                             onClick={handleProceedToPayment}
                         >
                             <FiCreditCard className="mr-2" /> Pay now

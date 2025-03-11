@@ -113,7 +113,7 @@ const Footer = () => {
                                 placeholder="Enter your email"
                                 className=" w-20 p-3 outline-none flex-grow border text-black"
                             />
-                            <button className="bg-store-footer-hover text-white px-4 py-2 rounded-r-md hover:bg-store-secondary duration-300">
+                            <button className="active:opacity-60 transition-all bg-store-footer-hover text-white px-4 py-2 rounded-r-md hover:bg-store-secondary duration-300">
                                 Subscribe
                             </button>
                         </div>

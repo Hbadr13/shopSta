@@ -114,7 +114,7 @@ const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, l
     return <>
         <DropdownMenu  >
             <DropdownMenuTrigger asChild className='focus:outline-none focus:ring-0 rounded-full'>
-                <button className=" hover:scale-105 relative active:opacity-75- duration-200 focus:outline-none focus:ring-0">
+                <button className="active:opacity-60 transition-all  hover:scale-105 relative active:opacity-75- duration-200 focus:outline-none focus:ring-0">
                     {label != 'userInfo' && <div className="relative z-10 w-10 h-10 bg-eco-blue-v3 rounded-full flex justify-center items-center">
                         {icon}
                     </div>}
@@ -182,8 +182,8 @@ const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, l
                 <div className="w-full p-2 mt-2">
                     {
                         label == 'userInfo' ?
-                            <Button onPress={() => dispatch(logout())} className="w-full rounded-2xl text-white font-bold bg-eco-orange-v0 text-center py-6" variant="faded">Loug out</Button>
-                            : <Button className="w-full rounded-2xl text-white font-bold bg-eco-blue-v0 text-center py-6" variant="faded">View all</Button>
+                            <Button onPress={() => dispatch(logout())} className="active:opacity-60 transition-all duration-200 w-full rounded-2xl text-white font-bold bg-eco-orange-v0 text-center py-6" variant="faded">Loug out</Button>
+                            : <Button className="active:opacity-60 transition-all duration-200 w-full rounded-2xl text-white font-bold bg-eco-blue-v0 text-center py-6" variant="faded">View all</Button>
                     }
                 </div>
             </DropdownMenuContent>

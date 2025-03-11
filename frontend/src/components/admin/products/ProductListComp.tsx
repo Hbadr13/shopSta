@@ -39,7 +39,7 @@ const DisplayAvailbleSize = ({ sizes, colors, productId }: { sizes: string[], co
             <DropdownMenuTrigger asChild>
                 <button
                     onClick={toggleDropdown}
-                    className={`w-5 h-5 flex justify-center items-center active:bg-eco-blue-v2 duration-200 rounded-xl hover:scale-105 relative focus:outline-none focus:ring-0 ${isOpen ? "rotate-180" : "rotate-0"
+                    className={`active:opacity-60 transition-all w-5 h-5 flex justify-center items-center active:bg-eco-blue-v2 duration-200 rounded-xl hover:scale-105 relative focus:outline-none focus:ring-0 ${isOpen ? "rotate-180" : "rotate-0"
                         } transition-transform`}
                 >
                     <FiChevronDown />
@@ -65,7 +65,7 @@ const DisplayAvailbleSize = ({ sizes, colors, productId }: { sizes: string[], co
                 <div className="w-full p-2 mt-2">
                     <Button
                         onPress={() => route.push('/admin/product/view/' + productId)}
-                        className="w-full rounded-2xl text-white font-bold bg-eco-blue-v0 text-center py-6"
+                        className="active:opacity-60 transition-all duration-200 w-full rounded-2xl text-white font-bold bg-eco-blue-v0 text-center py-6"
                         variant="faded"
                     >
                         View all details
@@ -83,7 +83,7 @@ const ProductListComp = ({ productList }: { productList: IApiProducts }) => {
         dispatch(deleteProduct(productId)).then((data) => {
             addToast({
                 title: data.payload.message,
-                timeout: 1400,
+                timeout: 3000,
                 shouldShowTimeoutProgress: true,
                 color: 'success'
 
@@ -164,17 +164,17 @@ const ProductListComp = ({ productList }: { productList: IApiProducts }) => {
                         <TableCell className="text-center px-4 py-2  rounded-r-xl ">
                             <div className="flex space-x-1">
                                 <Button onPress={() => route.push('/admin/product/view/' + product._id)} radius="full"
-                                    className=" hover:scale-[102%] w-8 h-7 bg-eco-blue-v0/10  text-eco-blue-v0 hover:bg-eco-blue-v0 hover:text-white duration-200 rounded-md p-1.5" isIconOnly aria-label="Like"  >
+                                    className="active:opacity-60 transition-all   hover:scale-[102%] w-8 h-7 bg-eco-blue-v0/10  text-eco-blue-v0 hover:bg-eco-blue-v0 hover:text-white duration-200 rounded-md p-1.5" isIconOnly aria-label="Like"  >
                                     <FiEdit3 strokeWidth={1.6} className="w-full h-full" />
                                 </Button>
                                 <Button onPress={() => route.push('/admin/product/edit/' + product._id)}
-                                    className="hover:scale-[102%] w-8 h-7 bg-eco-blue-v0/10 text-eco-blue-v0 hover:bg-eco-blue-v0 hover:text-white duration-200  rounded-md p-1.5" radius="full" isIconOnly >
+                                    className=" hover:scale-[102%] w-8 h-7 bg-eco-blue-v0/10 text-eco-blue-v0 hover:bg-eco-blue-v0 hover:text-white duration-200  rounded-md p-1.5" radius="full" isIconOnly >
                                     <FiEye strokeWidth={1.6} className="w-full h-full" />
                                 </Button>
                                 <AlertDialogDemo
                                     title={'Are you absolutely sure?'}
                                     triggerButton={
-                                        <Button radius="full" className=" hover:scale-[102%] w-8 h-7 bg-red-100 hover:bg-red-500 hover:text-red-100 duration-200  rounded-md p-1.5 text-red-500" isIconOnly >
+                                        <Button radius="full" className="active:opacity-60 transition-all  hover:scale-[102%] w-8 h-7 bg-red-100 hover:bg-red-500 hover:text-red-100 duration-200  rounded-md p-1.5 text-red-500" isIconOnly >
                                             <AiOutlineDelete className="w-full h-full" strokeWidth={1.6} />
                                         </Button>
                                     }

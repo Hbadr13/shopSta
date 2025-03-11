@@ -44,7 +44,7 @@ export function DrawerDialogDemo({ product }: { product: Product }) {
         return (
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <button className="group/button hover:bg-store-footer-hover duration-300 bg-white p-2 lg:p-3 rounded-full shadow-md">
+                    <button className="active:opacity-60 transition-all duration-200 group/button hover:bg-store-footer-hover duration-300 bg-white p-2 lg:p-3 rounded-full shadow-md">
                         <ShoppingCart size={20} className="text-gray-700 duration-300 group-hover/button:text-white" />
                     </button>
                 </DialogTrigger>
@@ -61,7 +61,7 @@ export function DrawerDialogDemo({ product }: { product: Product }) {
     return (
         <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
-                <button className="group/button hover:bg-store-footer-hover duration-300 bg-white p-2 lg:p-3 rounded-full shadow-md">
+                <button className="active:opacity-60 transition-all group/button hover:bg-store-footer-hover duration-300 bg-white p-2 lg:p-3 rounded-full shadow-md">
                     <ShoppingCart size={20} className="text-gray-700 duration-300 group-hover/button:text-white" />
                 </button>
             </DrawerTrigger>
@@ -110,10 +110,10 @@ const ProductCard = ({ product, favoritesProductIds, page }: { product: Product,
                     />
                 </Link>
                 <div className="absolute   right-1 md:right-4 bottom-4 flex items-center justify-center space-x-1  md:space-x-3 opacity-0  transition-all transform translate-y-0 group-hover:opacity-100 group-hover:-translate-y-3 duration-300 ">
-                    <button onClick={favoritesProductIds.indexOf(product._id) == -1 ? handelAddToFavorites : handelremoveFavorites} className="group/button hover:bg-store-footer-hover duration-300 bg-white p-2 lg:p-3 rounded-full shadow-md">
+                    <button onClick={favoritesProductIds.indexOf(product._id) == -1 ? handelAddToFavorites : handelremoveFavorites} className="active:opacity-60 transition-all duration-200 group/button hover:bg-store-footer-hover duration-300 bg-white p-2 lg:p-3 rounded-full shadow-md">
                         <Heart size={20} className={`${favoritesProductIds.indexOf(product._id) != -1 ? 'text-red-500 fill-red-500 group-hover/button:fill-white group-hover/button:text-white' : 'text-gray-700 group-hover/button:text-white'}  duration-300 `} />
                     </button>
-                    <button onClick={() => router.push(`/product/${product._id}`)} className="group/button hover:bg-store-footer-hover duration-300 bg-white p-2 lg:p-3 rounded-full shadow-md">
+                    <button onClick={() => router.push(`/product/${product._id}`)} className="active:opacity-60 transition-all duration-200 group/button hover:bg-store-footer-hover duration-300 bg-white p-2 lg:p-3 rounded-full shadow-md">
                         <Eye size={20} className="text-gray-700 duration-300 group-hover/button:text-white" />
                     </button>
                     <DrawerDialogDemo product={product} />
@@ -129,7 +129,7 @@ const ProductCard = ({ product, favoritesProductIds, page }: { product: Product,
                     {product.sizes.map((size, index) => (
                         <button
                             key={index}
-                            className={`${page == 'main' ? 'px-2 py-0.5 text-base' : 'px-1 text-sm'} flex justify-center items-center font-semibold text-black border rounded-md hover:bg-eco-black-v3 duration-300`}
+                            className={`active:opacity-60 transition-all duration-200 ${page == 'main' ? 'px-2 py-0.5 text-base' : 'px-1 text-sm'} flex justify-center items-center font-semibold text-black border rounded-md hover:bg-eco-black-v3 duration-300`}
                         >
                             {size}
                         </button>

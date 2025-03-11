@@ -39,10 +39,10 @@ const AddProductComp = ({ formData, setFormData, hendelAddProcut, selectedImages
                 }
                 <div className=" bg-slate-200/55 rounded-xl -shadow-[0px_0px_2px_0px_rgba(0,0,0,0.12)]">
                     <div className="py-6 pr-10 space-x-6 flex items-center justify-end">
-                        <button onClick={() => route.push('/admin/dashboard')} className=" font-semibold text-eco-orange-v0 border-eco-orange-v0 border-2 rounded-2xl px-6 py-3 hover:scale-[102%] duration-200">
+                        <button onClick={() => route.push('/admin/dashboard')} className="active:opacity-60 transition-all duration-200 font-semibold text-eco-orange-v0 border-eco-orange-v0 border-2 rounded-2xl px-6 py-3 hover:scale-[102%] duration-200">
                             Cancel
                         </button>
-                        <button onClick={hendelAddProcut} className="bg-eco-blue-v0 rounded-2xl  px-4 py-3 duration-300  font-semibold text-white hover:bg-slate-200/55 hover:scale-[102%] border-2 border-eco-blue-v0  hover:text-eco-blue-v0">
+                        <button onClick={hendelAddProcut} className="active:opacity-60 transition-all duration-200 bg-eco-blue-v0 rounded-2xl  px-4 py-3 duration-300  font-semibold text-white hover:bg-slate-200/55 hover:scale-[102%] border-2 border-eco-blue-v0  hover:text-eco-blue-v0">
                             Create Product
                         </button>
 

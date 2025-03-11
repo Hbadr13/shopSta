@@ -37,7 +37,7 @@ const AdditionalProductDetails = ({ product }: { product: Product }) => {
                 {tabs.map((tab) => (
                     <button
                         key={tab}
-                        className={` px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg font-medium rounded-lg transition-all 
+                        className={`active:opacity-60 transition-all duration-200 px-3 py-1 md:px-4 md:py-2 text-sm md:text-lg font-medium rounded-lg transition-all 
                             ${activeTab === tab ? "bg-black text-white" : "bg-gray-200 text-black"}`}
                         onClick={() => setActiveTab(tab)}
                     >

@@ -147,13 +147,13 @@ export default function OrderReviewPage() {
                     {/* Buttons to modify or proceed to payment */}
                     <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <Button
-                            className="w-full bg-gray-600 text-white h-14 rounded-full flex items-center justify-center"
+                            className="active:opacity-60 transition-all duration-200 w-full bg-gray-600 text-white h-14 rounded-full flex items-center justify-center"
                             onClick={() => router.push(`/order/edit/${order._id}`)}
                         >
                             <FiEdit className="mr-2" /> Edit Order
                         </Button>
                         <Button
-                            className="w-full bg-blue-600 text-white h-14 rounded-full flex items-center justify-center"
+                            className="active:opacity-60 transition-all duration-200 w-full bg-blue-600 text-white h-14 rounded-full flex items-center justify-center"
                             onClick={handleProceedToPayment}
                         >
                             <FiCreditCard className="mr-2" /> Proceed to Payment

@@ -66,7 +66,7 @@ const RootLayout = ({
                   <NewsletterPopup />
                 </>
               }
-              <div className="min-h-[50vh] overflow-hidden">
+              <div className="">
                 {children}
               </div>
               {

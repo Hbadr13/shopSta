@@ -46,7 +46,7 @@ const ProductDisplayWhenCreated: React.FC<ProductDisplayWhenCreatedProps> = ({ f
                                     hasSpacer={true}
 
                                 />
-                                <button onClick={() => { setSelectedImages(selectedImages.filter((img) => currentSelectedImage ? img != currentSelectedImage : img != selectedImages[selectedImages.length - 1])); setCurrentSelectedImage(null) }} className="absolute top-4 right-4 bg-white px-2">X</button>
+                                <button onClick={() => { setSelectedImages(selectedImages.filter((img) => currentSelectedImage ? img != currentSelectedImage : img != selectedImages[selectedImages.length - 1])); setCurrentSelectedImage(null) }} className="active:opacity-60 transition-all duration-200 absolute top-4 right-4 bg-white px-2">X</button>
                             </div>
                             :
                             <div className="w-full h-full rounded-md object-cover bg-eco-black-v2/15" />

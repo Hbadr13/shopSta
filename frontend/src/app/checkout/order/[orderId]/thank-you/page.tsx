@@ -138,10 +138,10 @@ export default function OrderConfirmationPage() {
                     </div>
 
                     <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                        <Button className="w-full bg-black text-white h-14 rounded-full flex items-center justify-center" onClick={() => router.push("/")}>
+                        <Button className="active:opacity-60 transition-all duration-200 w-full bg-black text-white h-14 rounded-full flex items-center justify-center" onClick={() => router.push("/")}>
                             <FiHome className="mr-2" /> Back to Home
                         </Button>
-                        <Button className="w-full bg-blue-600 text-white h-14 rounded-full flex items-center justify-center" onClick={() => generatePDF(order)}>
+                        <Button className="active:opacity-60 transition-all duration-200 w-full bg-blue-600 text-white h-14 rounded-full flex items-center justify-center" onClick={() => generatePDF(order)}>
                             <FiDownload className="mr-2" /> Download Invoice
                         </Button>
                     </div>

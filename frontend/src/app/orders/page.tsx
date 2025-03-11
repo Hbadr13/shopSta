@@ -102,7 +102,7 @@ const OrderHistoryPage = () => {
                     addToast({
                         title: state.payload.message,
                         color: "danger",
-                        timeout: 2000,
+                        timeout: 3000,
                         shouldShowTimeoutProgress: true
 
                     });
@@ -189,7 +189,7 @@ const OrderHistoryPage = () => {
                             </div>
                             <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 space-x-0 md:space-x-4">
                                 <Button
-                                    className="w-auto h-auto"
+                                    className="active:opacity-60 transition-all duration-200 w-auto h-auto"
 
                                     variant="outline"
                                     onClick={() => {
@@ -204,13 +204,13 @@ const OrderHistoryPage = () => {
                                 </Button>
                                 {
                                     order.paymentStatus == 'pending' ? <Button
-                                        className=" bg-blue-600 text-white w-autoh-auto"
+                                        className="active:opacity-60 transition-all duration-200 bg-blue-600 text-white w-autoh-auto"
                                         onClick={() => router.push(`/checkout/order/${order?._id}/review`)}
                                     >
                                         <FiCreditCard className="mr-2" /> Pay now
                                     </Button>
                                         : <Button
-                                            className="w-auto h-auto"
+                                            className="active:opacity-60 transition-all duration-200 w-auto h-auto"
                                             variant="outline"
                                             onClick={() => generatePDF(order)}
                                         >
@@ -292,7 +292,7 @@ const OrderHistoryPage = () => {
                         </div>
                     )}
                     <DialogFooter>
-                        {selectedOrder && <Button onClick={() => router.push(`/order/${selectedOrder._id}/view`)}>
+                        {selectedOrder && <Button className="active:opacity-60 transition-all duration-200" onClick={() => router.push(`/order/${selectedOrder._id}/view`)}>
                             More  details
                         </Button>}
 

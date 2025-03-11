@@ -14,14 +14,13 @@ import { logout } from "@/features/auth/authActions";
 import { VscAccount } from "react-icons/vsc";
 import ShopNavigationMenuDemo from "./ShopNavigationMenuDemo";
 import Image from "next/image";
-import { getCookie } from "cookies-next/client";
 const UserCard = () => {
     const dispatch = useAppDispatch()
     const { user } = useAppSelector((state) => state.auth)
     return (
         <DropdownMenu  >
             <DropdownMenuTrigger asChild className='focus:outline-none focus:ring-0 rounded-full'>
-                <button className=" hover:scale-105 relative active:opacity-75- duration-200 focus:outline-none focus:ring-0">
+                <button className="active:opacity-60 transition-all  hover:scale-105 relative active:opacity-75- duration-200 focus:outline-none focus:ring-0">
                     <div className="flex items-center space-x-2">
                         <div className=" text-sm">
                             <div className="">{user?.userName}</div>
@@ -45,7 +44,7 @@ const UserCard = () => {
 
                 </DropdownMenuGroup>
                 <div className="w-full p-2 mt-2">
-                    <Button onClick={() => dispatch(logout())} className="w-full rounded-2xl text-white font-bold bg-eco-orange-v0 text-center py-6">Loug out</Button>
+                    <Button onClick={() => dispatch(logout())} className="active:opacity-60 transition-all duration-200 w-full rounded-2xl text-white font-bold bg-eco-orange-v0 text-center py-6">Loug out</Button>
                 </div>
             </DropdownMenuContent>
         </DropdownMenu>
@@ -66,7 +65,7 @@ const ShopNavbar = () => {
     }
     return (
         <nav className=" shado">
-            ={getCookie('token')}=
+            {/* ={getCookie('token')}= */}
             <div className="flex items-center justify-between py-4 px-1.5 md:px-12 bg-white">
                 <CartPopup />
                 <Link className="text-2xl md:text-3xl font-extrabold" href="/">
@@ -80,7 +79,7 @@ const ShopNavbar = () => {
                         placeholder="Search..."
                         className="bg-transparent outline-none px-4 w-full h-full border"
                     />
-                    <button className="bg-store-footer-hover text-white hover:bg-red-400 h-full w-12 flex justify-center items-center">
+                    <button className="active:opacity-60 transition-all duration-200 bg-store-footer-hover text-white hover:bg-red-400 h-full w-12 flex justify-center items-center">
                         <FaSearch className="w-5 h-5" />
                     </button>
                 </div>
@@ -89,14 +88,14 @@ const ShopNavbar = () => {
                         <PhoneCall className="text-store-footer-hover w-5 h-5" />
                         <span className="font-semibold">+212 693 768 664</span>
                     </div>
-                    <button onClick={handelClickFav} className=" scale-80 md:scale-100  active:opacity-50 duration-200 relative cursor-pointer bg-white">
+                    <button onClick={handelClickFav} className=" transition-all  scale-80 md:scale-100  active:opacity-50 duration-200 relative cursor-pointer bg-white">
                         <Heart className=" text-primary" />
                         <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-4 h-4 flex items-center justify-center rounded-full">
                             0
                         </span>
                     </button>
 
-                    <button onClick={() => dispatch(setOpenCartPopup(true))} className="scale-80 md:scale-100  relative cursor-pointer ">
+                    <button onClick={() => dispatch(setOpenCartPopup(true))} className="active:opacity-60 transition-all duration-200 scale-80 md:scale-100  relative cursor-pointer ">
                         <ShoppingBag className="text-2xl text-primary" />
                         <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-4 h-4 flex items-center justify-center rounded-full">
                             {countity}
@@ -113,7 +112,7 @@ const ShopNavbar = () => {
 
                     <Sheet>
                         <SheetTrigger asChild>
-                            <button className="md:hidden hover:bg-store-gray-200/60 rounded-md duration-200 active:bg-eco-black-v2/30">
+                            <button className="active:opacity-60 transition-all md:hidden hover:bg-store-gray-200/60 rounded-md duration-200 active:bg-eco-black-v2/30">
                                 <Menu width={250} height={250} className=" w-5 h-5 text-gray-700" />
                             </button>
                         </SheetTrigger>

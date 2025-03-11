@@ -23,10 +23,11 @@ const CartPopup = () => {
             dispatch(setOpenCartPopup(true));
         }
     }, [cart.length, dispatch]);
-    if (pathname == '/cart') {
-        dispatch(setOpenCartPopup(!true));
-        return
-    }
+    useEffect(() => {
+        if (pathname === "/cart") {
+            dispatch(setOpenCartPopup(false));
+        }
+    }, [pathname, dispatch]);
     return (
         <Sheet open={openCartPopup} onOpenChange={(isOpen) => dispatch(setOpenCartPopup(isOpen))}>
             {openCartPopup && (
@@ -68,11 +69,11 @@ const CartPopup = () => {
                                     <div className="flex items-center justify-between">
 
                                         <div className="flex items-center space-x-1 mt-2">
-                                            <Button variant="outline" size="sm" onClick={() => dispatch(updateQuantity({ id: item.id || 0, quantity: item.quantity - 1 }))} disabled={item.quantity <= 1}>-</Button>
+                                            <Button className="active:opacity-60 transition-all duration-200" variant="outline" size="sm" onClick={() => dispatch(updateQuantity({ id: item.id || 0, quantity: item.quantity - 1 }))} disabled={item.quantity <= 1}>-</Button>
                                             <span className="px-1">{item.quantity}</span>
-                                            <Button variant="outline" size="sm" onClick={() => dispatch(updateQuantity({ id: item.id || 0, quantity: item.quantity + 1 }))}>+</Button>
+                                            <Button className="active:opacity-60 transition-all duration-200" variant="outline" size="sm" onClick={() => dispatch(updateQuantity({ id: item.id || 0, quantity: item.quantity + 1 }))}>+</Button>
                                         </div>
-                                        <Button variant="destructive" size="sm" className="mt-2" onClick={() => dispatch(removeFromCart(item.id || 0))}>
+                                        <Button variant="destructive" size="sm" className="active:opacity-60 transition-all duration-200 mt-2" onClick={() => dispatch(removeFromCart(item.id || 0))}>
                                             <FiTrash2 />
                                         </Button>
                                     </div>
@@ -85,8 +86,8 @@ const CartPopup = () => {
 
                 </div>
                 <div className="mt-6 flex flex-col space-y-2">
-                    <Button onClick={() => { dispatch(setOpenCartPopup(false)); router.push('/cart') }} className="w-full h-14 rounded-full text-lg font-medium">View Bag</Button>
-                    <Button onClick={() => { dispatch(setOpenCartPopup(false)); router.push('/checkout') }} variant="outline" className="w-full h-14 rounded-full text-lg font-medium">
+                    <Button onClick={() => { dispatch(setOpenCartPopup(false)); router.push('/cart') }} className="active:opacity-60 transition-all duration-200 w-full h-14 rounded-full text-lg font-medium">View Bag</Button>
+                    <Button onClick={() => { dispatch(setOpenCartPopup(false)); router.push('/checkout') }} variant="outline" className="active:opacity-60 transition-all duration-200 w-full h-14 rounded-full text-lg font-medium">
                         Checkout
                     </Button>
                 </div>

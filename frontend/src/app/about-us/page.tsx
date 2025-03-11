@@ -99,7 +99,7 @@ export default function AboutUsPage() {
             >
                 <h1 className="text-4xl font-bold">Welcome to Shopsta</h1>
                 <p className="mt-4 text-lg text-gray-600">Your one-stop destination for high-quality products and exceptional customer service.</p>
-                <Button className="mt-6 bg-black text-white h-12 rounded-full px-8">
+                <Button className="active:opacity-70 transition-all duration-200 mt-6 bg-black text-white h-12 rounded-full px-8">
                     <FiShoppingCart className="mr-2" /> Shop Now
                 </Button>
             </motion.div>
@@ -151,7 +151,7 @@ export default function AboutUsPage() {
             <motion.div initial="hidden" whileInView="visible" variants={fadeInUp} transition={{ duration: 0.8 }} className="mt-20 lg:mt-32 text-center py-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
                 <h2 className="text-3xl font-bold">Ready to Explore?</h2>
                 <p className="mt-4 text-lg text-gray-600">Discover our collection of products and experience the Shopsta difference.</p>
-                <Button className="mt-6 bg-black text-white h-12 rounded-full px-8">
+                <Button className="active:opacity-70 transition-all duration-200 mt-6 bg-black text-white h-12 rounded-full px-8">
                     <FiShoppingCart className="mr-2" /> Start Shopping
                 </Button>
             </motion.div>

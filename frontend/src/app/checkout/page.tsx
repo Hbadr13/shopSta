@@ -115,7 +115,7 @@ export default function CheckoutPage() {
                 addToast({
                     title: state.payload.message,
                     color: 'danger',
-                    timeout: 2000,
+                    timeout: 3000,
                     shouldShowTimeoutProgress: true,
 
                 });
@@ -146,7 +146,7 @@ export default function CheckoutPage() {
                     <div className="">
                         Your cart is empty.
                     </div>
-                    <Button variant="outline" className="w-max" size="sm" onClick={() => router.push('/')}>
+                    <Button variant="outline" className="active:opacity-60 transition-all duration-200 w-max" size="sm" onClick={() => router.push('/')}>
                         <FiArrowLeft /> Back to Home
                     </Button>
                 </div> :
@@ -154,20 +154,21 @@ export default function CheckoutPage() {
                         <div className="relative py-4 border-b">
                             <div className="flex justify-between">
                                 <button
-                                    className={`${step === 1 ? 'font-bold' : 'text-gray-500'}`}
+
+                                    className={`active:opacity-60 transition-all duration-200 ${step === 1 ? 'font-bold' : 'text-gray-500'}`}
                                     onClick={() => setStep(1)}
                                 >
                                     Delivery Options
                                 </button>
                                 <button
-                                    className={`${step === 2 ? 'font-bold' : 'text-gray-500'} ${!isDeliveryStepValid && 'cursor-not-allowed'}`}
+                                    className={`active:opacity-60 transition-all duration-200 ${step === 2 ? 'font-bold' : 'text-gray-500'} ${!isDeliveryStepValid && 'cursor-not-allowed'}`}
                                     onClick={() => isDeliveryStepValid && setStep(2)}
                                     disabled={!isDeliveryStepValid}
                                 >
                                     Payment
                                 </button>
                                 <button
-                                    className={`${step === 3 ? 'font-bold' : 'text-gray-500'} ${!isPaymentStepValid && 'cursor-not-allowed'}`}
+                                    className={`active:opacity-60 transition-all duration-200 ${step === 3 ? 'font-bold' : 'text-gray-500'} ${!isPaymentStepValid && 'cursor-not-allowed'}`}
                                     onClick={() => isPaymentStepValid && setStep(3)}
                                     disabled={!isPaymentStepValid}
                                 >
@@ -218,7 +219,7 @@ export default function CheckoutPage() {
                                 </div>
                                 <Button
                                     onClick={handleNextStep}
-                                    className="w-full bg-black text-white h-14 rounded-full"
+                                    className="active:opacity-60 transition-all duration-200 w-full bg-black text-white h-14 rounded-full"
                                     disabled={!isDeliveryStepValid}
                                 >
                                     Next: Payment
@@ -262,7 +263,7 @@ export default function CheckoutPage() {
                                 </div>
                                 <Button
                                     onClick={handleNextStep}
-                                    className="w-full bg-black text-white h-14 rounded-full"
+                                    className="active:opacity-60 transition-all duration-200 w-full bg-black text-white h-14 rounded-full"
                                     disabled={!isPaymentStepValid}
                                 >
                                     Next: Short Review
@@ -281,7 +282,7 @@ export default function CheckoutPage() {
                                         </div>
                                     </div>
                                 ))}
-                                <Button disabled={waiting} onClick={handelCompletePurchase} className={`${subtotal ? 'bg-black text-white' : 'bg-store-gray-200 hover:bg-store-gray-200 active:bg-black/60 cursor-not-allowed border-1 border-gray-400 text-black'} w-full h-14 rounded-full text-lg font-medium  `}>
+                                <Button disabled={waiting} onClick={handelCompletePurchase} className={`active:opacity-60 transition-all duration-200  ${subtotal ? 'bg-black text-white' : 'bg-store-gray-200 hover:bg-store-gray-200 active:bg-black/60 cursor-not-allowed border-1 border-gray-400 text-black'} w-full h-14 rounded-full text-lg font-medium  `}>
                                     {
 
                                         waiting ? <div className="flex items-center space-x-2">

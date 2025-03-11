@@ -41,18 +41,21 @@ const Login = () => {
             const returnUrl = searchParams.get("return_url");
 
             if (data?.payload?.success) {
+                if (data?.payload.user.role == 'admin')
+                    route.push("/admin/dashboard");
+                else
+                    route.push(returnUrl || "/");
                 addToast({
                     title: data?.payload?.message,
-                    timeout: 1500,
+                    timeout: 3000,
                     color: 'success',
                     shouldShowTimeoutProgress: true
 
                 });
-                route.push(returnUrl || "/");
             } else {
                 addToast({
                     title: data?.payload?.message,
-                    timeout: 1500,
+                    timeout: 3000,
                     color: 'danger',
                     shouldShowTimeoutProgress: true
 
@@ -101,7 +104,7 @@ const Login = () => {
                     <button
                         type="button"
                         onClick={togglePasswordVisibility}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                        className="active:opacity-70 transition-all duration-200 absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
                     >
                         {showPassword ? <EyeOff className="w-7 h-7 mb-1 text-stone-500" /> : <Eye className="w-7 h-7 mb-1 text-stone-500" />}
                     </button>

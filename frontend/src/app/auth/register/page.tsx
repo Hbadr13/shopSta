@@ -40,7 +40,7 @@ const AuthRegister = () => {
                     title: data?.payload?.message,
                     shouldShowTimeoutProgress: true,
                     color: 'success',
-                    timeout: 2000
+                    timeout: 3000
 
                 });
                 route.push("/auth/login");
@@ -49,7 +49,7 @@ const AuthRegister = () => {
                     title: data?.payload?.message,
                     color: "danger",
                     shouldShowTimeoutProgress: true,
-                    timeout: 2000
+                    timeout: 3000
 
                 });
             }
@@ -109,7 +109,7 @@ const AuthRegister = () => {
                         {showPassword ? <EyeOff className="w-7 h-7 mb-1 text-stone-500" /> : <Eye className="w-7 h-7 mb-1 text-stone-500" />}
                     </button>
                 </div>
-                <Button type="submit" className="mt-2 w-full">
+                <Button type="submit" className="active:opacity-70 transition-all duration-200 mt-2 w-full">
                     Sign Up
                 </Button>
             </form>

@@ -50,7 +50,7 @@ export default function OrderDetailsPage() {
                         title: state.payload.message,
                         description: `Order Id: ${orderId}`,
                         color: "danger",
-                        timeout: 2000,
+                        timeout: 3000,
                         shouldShowTimeoutProgress: true
                     });
                 }
@@ -107,7 +107,7 @@ export default function OrderDetailsPage() {
                             </p>
                         </div>
                         {order.paymentStatus == 'pending' && <Button
-                            className=" bg-blue-600 text-white h-8 rounded flex items-center justify-center"
+                            className="active:opacity-60 transition-all duration-200 bg-blue-600 text-white h-8 rounded flex items-center justify-center"
                             onClick={() => router.push(`/checkout/order/${order?._id}/review`)}
                         >
                             <FiCreditCard className="mr-2" /> Pay now

@@ -110,7 +110,7 @@ export default function ContactPage() {
                             </label>
                             <button
                                 type="submit"
-                                className="  w-max   font-semibold hover:bg-store-footer-hover/10 active:opacity-60 duration-200 text-store-footer-hover border border-store-footer-hover px-7 py-2 rounded-md transition"
+                                className=" active:opacity-60 transition-all duration-200 w-max   font-semibold hover:bg-store-footer-hover/10 active:opacity-60 duration-200 text-store-footer-hover border border-store-footer-hover px-7 py-2 rounded-md transition"
                             >
                                 Submit
                             </button>

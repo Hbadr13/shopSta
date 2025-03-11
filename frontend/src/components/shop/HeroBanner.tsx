@@ -68,16 +68,7 @@ const HeroBanner = () => {
                                 <div className="block md:hidden h-20">
 
                                 </div>
-                                {/* <div className=" block lg:hidden space-x-3 text-xl py-4">
-                                    {
-                                        slides.map((it, index) =>
-                                            <button
-                                                key={index}
-                                                onClick={() => setAudience(it.category)}
-                                                className={`${audience == it.category ? 'text-store-footer-hover border-b-1 border-store-footer-hover' : 'text-white'}`}  >{it.category}</button>
-                                        )
-                                    }
-                                </div> */}
+
                             </div>
                         </div>
                     </SwiperSlide>
@@ -89,7 +80,7 @@ const HeroBanner = () => {
                         <button
                             key={index}
                             onClick={() => setAudience(it.category)}
-                            className={`${audience == it.category ? 'text-store-footer-hover border-b-1 border-store-footer-hover' : 'text-white'}`}  >{it.category}</button>
+                            className={`active:opacity-60 transition-all duration-200 ${audience == it.category ? 'text-store-footer-hover border-b-1 border-store-footer-hover' : 'text-white'}`}  >{it.category}</button>
                     )
                 }
             </div>

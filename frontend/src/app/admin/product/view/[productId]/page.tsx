@@ -152,8 +152,8 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
             </CardContent>
 
             <CardFooter className="p-6 flex justify-between">
-                <Button variant="outline">Edit Product</Button>
-                <Button className="bg-red-500 text-white">Delete Product</Button>
+                <Button className='active:opacity-70 transition-all duration-200' variant="outline">Edit Product</Button>
+                <Button className="active:opacity-70 transition-all duration-200 bg-red-500 text-white">Delete Product</Button>
             </CardFooter>
         </Card>
     );
@@ -170,7 +170,7 @@ export default function Page() {
     }, [dispatch, productId])
 
     if (isLoading || !productDetails)
-        return <div className="w-full h-80 bg-blue-200 text-5xl">loading ....</div>
+        return <div className="w-full h-full p-5  text-2xl bg-white shadow">loading ....</div>
 
 
     return (

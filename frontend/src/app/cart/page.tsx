@@ -107,7 +107,7 @@ export default function CartPage() {
                                         <span className="px-2 text-base font-semibold">{item.quantity}</span>
                                         <HeButton className="h-10 text-base font-semibold" variant='light' size="sm" onPress={() => dispatch(updateQuantity({ id: item.id || 0, quantity: item.quantity + 1 }))}>+</HeButton>
                                     </div>
-                                    <Button variant="outline" size="sm" onClick={() => dispatch(removeFromCart(item.id || 0))}>
+                                    <Button className="active:opacity-70 transition-all duration-200" variant="outline" size="sm" onClick={() => dispatch(removeFromCart(item.id || 0))}>
                                         <FiTrash2 />
                                     </Button>
                                     <Button
@@ -137,19 +137,19 @@ export default function CartPage() {
                             <div className="">
                                 Your cart is empty.
                             </div>
-                            <Button variant="outline" className="w-max" size="sm" onClick={() => router.push('/')}>
+                            <Button variant="outline" className="active:opacity-60 transition-all duration-200 w-max" size="sm" onClick={() => router.push('/')}>
                                 <FiArrowLeft /> Back to Home
                             </Button>
                         </div>)}
                 </div>
 
             </div>
-            <div style={{ height: `${cart.length * 320}px` }} className={`w-full pc:w-2/5 bg-white rounded-lg p-4`}>
+            <div style={{ height: `${(cart.length || 1) * 500}px` }} className={`w-full pc:w-2/5 bg-white rounded-lg p-4`}>
                 <div className=" sticky top-10 space-y-4">
                     <h2 className="text-2xl font-bold p-0 md:p-2">Summary</h2>
                     <div className="flex items-center space-x-2">
                         <Input placeholder="Promo Code" className="flex-1" />
-                        <Button variant="outline">Apply</Button>
+                        <Button className="active:opacity-60 transition-all duration-200" variant="outline">Apply</Button>
                     </div>
                     <div className="space-y-2 text-gray-600">
                         <div className="flex justify-between">
@@ -173,7 +173,7 @@ export default function CartPage() {
                         Members get free shipping on orders $50.00+
                         <span className="text-blue-500 underline cursor-pointer"> Join us or Sign in</span>
                     </p>
-                    <Button disabled={waiting} onClick={handleCheckout} className={`${subtotal ? 'bg-black text-white' : 'bg-store-gray-200 hover:bg-store-gray-200 cursor-not-allowed border-1 border-gray-400 text-black'} w-full h-14 rounded-full text-lg font-medium  `}>
+                    <Button disabled={waiting} onClick={handleCheckout} className={`active:opacity-60 transition-all duration-200 ${subtotal ? 'bg-black text-white' : 'bg-store-gray-200 hover:bg-store-gray-200 cursor-not-allowed border-1 border-gray-400 text-black'} w-full h-14 rounded-full text-lg font-medium  `}>
                         {
 
                             waiting ? <div className="flex items-center space-x-2">

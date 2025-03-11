@@ -57,7 +57,7 @@ export function ShopNavigationMenuDemo() {
                     )
                 }
                 <NavigationMenuItem>
-                    <button onClick={handelClickOnOrder} >
+                    <button className="active:opacity-60 transition-all duration-200" onClick={handelClickOnOrder} >
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             orders
                         </NavigationMenuLink>

@@ -45,7 +45,7 @@ export default function Home() {
         >
           <h1 className="text-4xl font-bold">Welcome to Shopsta</h1>
           <p className="mt-4 text-lg text-gray-600">Your one-stop destination for high-quality products and exceptional customer service.</p>
-          <Button onPress={handelScroling} className="mt-6 bg-black text-white h-12 rounded-full px-8">
+          <Button onPress={handelScroling} className="active:opacity-70 transition-all duration-200 mt-6 bg-black text-white h-12 rounded-full px-8">
             <FiShoppingCart className="mr-2" /> Shop Now
           </Button>
         </motion.div>
