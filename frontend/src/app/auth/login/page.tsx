@@ -1,19 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { loginUser } from "@/features/auth/authActions";
-import { useToast } from "@/hooks/use-toast";
 import { AppDispatch } from "@/redux/store";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Eye, EyeOff } from "lucide-react";
-import { Input } from "@heroui/react";
+import { addToast, Input } from "@heroui/react";
 import { MdOutlineEmail } from "react-icons/md";
 
 const Login = () => {
     const dispatch: AppDispatch = useDispatch();
-    const { toast } = useToast();
     const route = useRouter();
     const searchParams = useSearchParams();
 
@@ -43,10 +41,23 @@ const Login = () => {
             const returnUrl = searchParams.get("return_url");
 
             if (data?.payload?.success) {
-                toast({ title: data?.payload?.message });
+                addToast({
+                    title: data?.payload?.message,
+                    timeout: 1500,
+                    color: 'success',
+                    shouldShowTimeoutProgress: true
+
+                });
                 route.push(returnUrl || "/");
             } else {
-                toast({ title: data?.payload?.message });
+                addToast({
+                    title: data?.payload?.message,
+                    timeout: 1500,
+                    color: 'danger',
+                    shouldShowTimeoutProgress: true
+
+
+                });
             }
         });
     };
@@ -67,7 +78,7 @@ const Login = () => {
                     </Link>
                 </p>
             </div>
-            <form onSubmit={onSubmit} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-4 relative z-0">
                 <Input
                     type="email"
                     name="email"

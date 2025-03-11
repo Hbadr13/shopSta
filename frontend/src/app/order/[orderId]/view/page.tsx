@@ -8,7 +8,6 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import IOrder from "@/interface/IOrder";
 import { getConfirmationOfOrder } from "@/features/shop/order/orderAction";
-import { useToast } from "@/hooks/use-toast";
 import { formatPrice } from "@/lib/formatPrice";
 import Link from "next/link";
 import Image from "next/image";
@@ -16,6 +15,7 @@ import { MdOutlinePendingActions } from "react-icons/md";
 import OrderViewSkeleton from "@/components/shimmer/OrderViewSkeleton";
 import { Button } from "@/components/ui/button";
 import { getOrderStatusText, getPaymentStatusText } from "@/lib/statusText";
+import { addToast } from "@heroui/react";
 type OrderStatus = "pending" | "cancelled" | "processing" | "shipped" | "delivered";
 
 const getProgress = (status: OrderStatus): number => {
@@ -34,7 +34,6 @@ export default function OrderDetailsPage() {
     const [loading, setLoading] = useState(true);
     const dispatch = useAppDispatch();
     const { orderId } = useParams<{ orderId: string }>();
-    const { toast } = useToast();
     const router = useRouter();
     useEffect(() => {
         if (!user && !isLoading && orderId)
@@ -47,11 +46,12 @@ export default function OrderDetailsPage() {
                     setOrder(state.payload.order);
                     setLoading(false);
                 } else {
-                    toast({
+                    addToast({
                         title: state.payload.message,
                         description: `Order Id: ${orderId}`,
-                        variant: "destructive",
-                        duration: 2000
+                        color: "danger",
+                        timeout: 2000,
+                        shouldShowTimeoutProgress: true
                     });
                 }
             });

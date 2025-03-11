@@ -20,11 +20,11 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { AlertDialogDemo } from "@/components/common/AlertDialogCard";
 import { useAppDispatch } from "@/redux/redux-hooks";
 import { deleteProduct } from "@/features/admin/productActions";
-import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@heroui/button";
 import Image from "next/image";
+import { addToast } from "@heroui/react";
 
 
 const DisplayAvailbleSize = ({ sizes, colors, productId }: { sizes: string[], colors: string[], productId: string }) => {
@@ -79,10 +79,15 @@ const DisplayAvailbleSize = ({ sizes, colors, productId }: { sizes: string[], co
 const ProductListComp = ({ productList }: { productList: IApiProducts }) => {
     const route = useRouter()
     const dispatch = useAppDispatch()
-    const { toast } = useToast()
     const handelDeleteProduct = ({ productId }: { productId: string }) => {
         dispatch(deleteProduct(productId)).then((data) => {
-            toast({ title: data.payload.message, duration: 1400 })
+            addToast({
+                title: data.payload.message,
+                timeout: 1400,
+                shouldShowTimeoutProgress: true,
+                color: 'success'
+
+            })
         })
     }
     return (

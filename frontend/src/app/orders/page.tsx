@@ -20,11 +20,11 @@ import { useRouter } from "next/navigation";
 import OrdersSkeleton from "@/components/shimmer/OrdersSkeleton";
 import { MdOutlinePendingActions } from "react-icons/md";
 import { getOrderStatusText, getPaymentStatusText } from "@/lib/statusText";
-import { useToast } from "@/hooks/use-toast";
 import { autoTable } from 'jspdf-autotable';
 import "jspdf-autotable"; // Import the autoTable plugin
 import { jsPDF } from "jspdf";
 import Image from "next/image";
+import { addToast } from "@heroui/react";
 type OrderStatus = "pending" | "cancelled" | "processing" | "shipped" | "delivered";
 
 const getProgress = (status: OrderStatus): number => {
@@ -83,7 +83,6 @@ const OrderHistoryPage = () => {
     const [loading, setLoading] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter()
-    const { toast } = useToast();
 
     const filteredOrders = orders.filter((order) => {
         const matchesSearch = order._id.includes(searchQuery);
@@ -100,10 +99,12 @@ const OrderHistoryPage = () => {
                     setLoading(false);
                 }
                 else {
-                    toast({
+                    addToast({
                         title: state.payload.message,
-                        variant: "destructive",
-                        duration: 2000
+                        color: "danger",
+                        timeout: 2000,
+                        shouldShowTimeoutProgress: true
+
                     });
                 }
             });

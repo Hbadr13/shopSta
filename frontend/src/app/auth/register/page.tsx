@@ -1,19 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { registerUser } from "@/features/auth/authActions";
-import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Eye, EyeOff, User2 } from "lucide-react";
 import { useAppDispatch } from "@/redux/redux-hooks";
-import { Input } from "@heroui/react";
+import { addToast, Input } from "@heroui/react";
 import { MdOutlineEmail } from "react-icons/md";
 
 const AuthRegister = () => {
     const dispatch = useAppDispatch();
     const route = useRouter();
-    const { toast } = useToast();
 
     const [formData, setFormData] = useState({
         userName: "",
@@ -38,12 +36,21 @@ const AuthRegister = () => {
         event.preventDefault();
         dispatch(registerUser(formData)).then((data) => {
             if (data?.payload?.success) {
-                toast({ title: data?.payload?.message });
+                addToast({
+                    title: data?.payload?.message,
+                    shouldShowTimeoutProgress: true,
+                    color: 'success',
+                    timeout: 2000
+
+                });
                 route.push("/auth/login");
             } else {
-                toast({
+                addToast({
                     title: data?.payload?.message,
-                    variant: "destructive",
+                    color: "danger",
+                    shouldShowTimeoutProgress: true,
+                    timeout: 2000
+
                 });
             }
         });

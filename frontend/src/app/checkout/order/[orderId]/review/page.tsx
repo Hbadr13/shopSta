@@ -13,8 +13,8 @@ import IOrder from "@/interface/IOrder";
 import OrderConfirmeSkeleton from "@/components/shimmer/OrderConfirmeSkeleton";
 import { getConfirmationOfOrder } from "@/features/shop/order/orderAction";
 import Link from "next/link";
-import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
+import { addToast } from "@heroui/react";
 
 export default function OrderReviewPage() {
     const [order, setOrder] = useState<IOrder | null>(null);
@@ -24,17 +24,19 @@ export default function OrderReviewPage() {
     const dispatch = useAppDispatch();
     const { orderId } = useParams<{ orderId: string }>();
     const router = useRouter();
-    const { toast } = useToast()
     useEffect(() => {
         if (dispatch && orderId && typeof orderId === "string") {
             dispatch(getConfirmationOfOrder({ orderId })).then((state) => {
                 setTimeout(() => {
                     if (state.payload.success) {
                         if (state.payload.order.paymentStatus == 'paid') {
-                            toast({
+                            addToast({
                                 title: 'Order has already been paid',
                                 description: `Order Id: ${orderId}`,
-                                duration: 1500
+                                timeout: 1500,
+                                color: "success",
+                                shouldShowTimeoutProgress: true
+
                             })
                             setTimeout(() => {
                                 router.push(`/order/${orderId}/view`)
@@ -45,11 +47,12 @@ export default function OrderReviewPage() {
                             setLoading(false);
                         }
                     }
-                    else toast({
+                    else addToast({
                         title: state.payload.message,
                         description: `Order Id: ${orderId}`,
-                        variant: "destructive",
-
+                        color: "danger",
+                        timeout: 1500,
+                        shouldShowTimeoutProgress: true
                     })
 
                 }, 2000);

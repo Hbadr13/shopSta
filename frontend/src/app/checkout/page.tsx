@@ -8,12 +8,12 @@ import { FiArrowLeft, FiUser, FiMail, FiMapPin, FiCreditCard, FiCalendar, FiLock
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import { createYourOrder } from "@/features/shop/order/orderAction";
-import { useToast } from "@/hooks/use-toast";
 import CheckoutSkeleton from "@/components/shimmer/CheckoutSkeleton";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import Image from "next/image";
 import { clearCart } from "@/features/shop/cartSlice";
+import { addToast } from "@heroui/react";
 
 export default function CheckoutPage() {
     const { user, isLoading } = useAppSelector((state) => state.auth);
@@ -32,7 +32,6 @@ export default function CheckoutPage() {
     const [cvv, setCvv] = useState("888");
     const [waiting, setWaiting] = useState(false)
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-    const { toast } = useToast()
 
     const isDeliveryStepValid = fullName.trim() && fullName.length > 4 && email.trim() && isValidEmail(email) && shippingAddress.trim();
     const isPaymentStepValid =
@@ -113,10 +112,12 @@ export default function CheckoutPage() {
             }
             else {
                 setWaiting(false)
-                toast({
+                addToast({
                     title: state.payload.message,
-                    variant: 'destructive',
-                    duration: 2000
+                    color: 'danger',
+                    timeout: 2000,
+                    shouldShowTimeoutProgress: true,
+
                 });
             }
         })

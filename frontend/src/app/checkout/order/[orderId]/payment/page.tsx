@@ -2,8 +2,8 @@
 "use client"
 export const dynamicParams = true;
 import { payTheOrder } from "@/features/shop/order/orderAction";
-import { useToast } from "@/hooks/use-toast";
 import { useAppDispatch } from "@/redux/redux-hooks";
+import { addToast } from "@heroui/react";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -12,7 +12,6 @@ const Page = () => {
     const dispatch = useAppDispatch();
     const { orderId } = useParams<{ orderId: string }>();
     const router = useRouter();
-    const { toast } = useToast()
 
     useEffect(() => {
         if (dispatch && orderId && typeof orderId === "string") {
@@ -21,11 +20,11 @@ const Page = () => {
                 if (state.payload.success)
                     router.push(`/checkout/order/${orderId}/thank-you`);
                 else {
-                    toast({
+                    addToast({
                         title: state.payload.message,
-                        variant: state.payload.message != 'Order has already been paid' ? 'destructive' : 'default',
+                        color: state.payload.message != 'Order has already been paid' ? 'danger' : 'success',
                         description: `Order id: ${orderId}`,
-                        duration: 3000
+                        timeout: 3000
                     })
                     setTimeout(() => {
                         if (state.payload.message == 'Order has already been paid')

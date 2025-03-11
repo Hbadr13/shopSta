@@ -24,9 +24,9 @@ const UserCard = () => {
                     <div className="flex items-center space-x-2">
                         <div className=" text-sm">
                             <div className="">{user?.userName}</div>
-                            <div className="">{user?.email}</div>
+                            <div className="hidden md:block">{user?.email}</div>
                         </div>
-                        <Image width={100} height={100} alt='d' className="w-10 h-10 object-cover rounded-full" src="/profile-admin.png" />
+                        <Image width={100} height={100} alt='d' className=" w-8 h-8 md:w-10 md:h-10 object-cover rounded-full" src="/profile-admin.png" />
                     </div>
                 </button>
             </DropdownMenuTrigger>
@@ -65,7 +65,7 @@ const ShopNavbar = () => {
     }
     return (
         <nav className=" shado">
-            <div className="flex items-center justify-between py-4 px-4 md:px-12 bg-white">
+            <div className="flex items-center justify-between py-4 px-1.5 md:px-12 bg-white">
                 <CartPopup />
                 <Link className="text-2xl md:text-3xl font-extrabold" href="/">
                     <span className="text-primary cursor-pointer">Shop</span>
@@ -82,19 +82,19 @@ const ShopNavbar = () => {
                         <FaSearch className="w-5 h-5" />
                     </button>
                 </div>
-                <div className="flex items-center space-x-4 md:space-x-6">
+                <div className="flex items-center space-x-2 md:space-x-6">
                     <div className="hidden lg:flex items-center space-x-2 text-gray-700">
                         <PhoneCall className="text-store-footer-hover w-5 h-5" />
                         <span className="font-semibold">+212 693 768 664</span>
                     </div>
-                    <button onClick={handelClickFav} className="relative cursor-pointer bg-white">
-                        <Heart className="text-2xl text-primary" />
+                    <button onClick={handelClickFav} className=" scale-80 md:scale-100  active:opacity-50 duration-200 relative cursor-pointer bg-white">
+                        <Heart className=" text-primary" />
                         <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-4 h-4 flex items-center justify-center rounded-full">
                             0
                         </span>
                     </button>
 
-                    <button onClick={() => dispatch(setOpenCartPopup(true))} className="relative cursor-pointer ">
+                    <button onClick={() => dispatch(setOpenCartPopup(true))} className="scale-80 md:scale-100  relative cursor-pointer ">
                         <ShoppingBag className="text-2xl text-primary" />
                         <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-4 h-4 flex items-center justify-center rounded-full">
                             {countity}
@@ -104,15 +104,15 @@ const ShopNavbar = () => {
 
                         user ? <UserCard /> :
                             <Link href={'/auth/login'} className="flex items-center space-x-2 hover:text-store-gray-600 duration-300">
-                                <div>Login</div> <VscAccount className="w-6 h-6" />
+                                <div className="text-sm md:text-base">Login</div> <VscAccount className=" w-5 h-5 md:w-6 md:h-6" />
                             </Link>
 
                     }
 
                     <Sheet>
                         <SheetTrigger asChild>
-                            <button className="md:hidden hover:bg-store-gray-200/60 rounded-md p-1 duration-200 active:bg-eco-black-v2/30">
-                                <Menu width={25} height={25} className=" text-gray-700" />
+                            <button className="md:hidden hover:bg-store-gray-200/60 rounded-md duration-200 active:bg-eco-black-v2/30">
+                                <Menu width={250} height={250} className=" w-5 h-5 text-gray-700" />
                             </button>
                         </SheetTrigger>
                         <SheetContent side="left" className="p-6 space-y-6">

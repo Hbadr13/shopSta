@@ -1,7 +1,6 @@
 'use client'
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { HeroUIProvider } from "@heroui/react";
 import { Toaster } from "@/components/ui/toaster";
 import CheckAuth from "@/components/CheckAuth";
 import Providers from "@/lib/Providers";
@@ -12,7 +11,8 @@ import { useEffect } from "react";
 import { useAppDispatch } from "@/redux/redux-hooks";
 import { setWindowWidth } from "@/features/global/windowProps";
 import NewsletterPopup from "@/components/shop/NewsletterPopup";
-
+import { HeroUIProvider } from '@heroui/react'
+import { ToastProvider } from "@heroui/toast";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -59,14 +59,14 @@ const RootLayout = ({
           <HeroUIProvider>
             <CheckAuth>
               <WindowProps />
+              <ToastProvider placement="top-right" />
               {
                 !pathname.startsWith('/admin') && <>
                   <ShopNavbar />
                   <NewsletterPopup />
                 </>
               }
-              <div className="min-h-[50vh]">
-
+              <div className="min-h-[50vh] overflow-hidden">
                 {children}
               </div>
               {

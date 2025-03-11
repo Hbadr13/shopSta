@@ -2,12 +2,12 @@
 
 import AddProductComp from "@/components/admin/products/AddProductComp"
 import { addNewProduct } from "@/features/admin/productActions"
-import { useToast } from "@/hooks/use-toast"
 import { useAppDispatch } from "@/redux/redux-hooks"
 import { AppDispatch } from "@/redux/store"
 import { useState } from "react"
 import { addProductFormElements } from "@/config"
 import Image from "next/image"
+import { addToast } from "@heroui/react"
 const initialFormData = {
     title: "",
     description: "",
@@ -43,12 +43,13 @@ const Page = () => {
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [isLoading, setIsloading] = useState(false)
     const dispatch: AppDispatch = useAppDispatch()
-    const { toast } = useToast()
     const hendelAddProcut = async () => {
         if (!selectedImages.length || addProductFormElements.filter((element) => element.items.filter((item) => item.isRequired && !formData[item.name]?.length).length).length) {
-            toast({
+            addToast({
                 title: 'Please fill in the required fields.',
-                duration: 2000, variant: 'destructive'
+                timeout: 2000,
+                color: 'danger',
+                shouldShowTimeoutProgress: true
             })
             return
         }
@@ -78,21 +79,25 @@ const Page = () => {
             if (data.payload?.success) {
                 setIsloading(false)
                 setSelectedImages([])
-                toast({
+                addToast({
                     title: 'Product add successfully',
                     description: formData.title,
-                    duration: 2000, style: { borderColor: '#86efac' }
+                    timeout: 2000,
+                    color: 'success',
+                    shouldShowTimeoutProgress: true
+
                 })
                 setFormData(initialFormData)
             }
             else {
                 setIsloading(false)
-                toast({
+                addToast({
                     title: 'Product not added',
                     description: formData.title,
-                    duration: 3000,
-                    variant: 'destructive'
-                })
+                    timeout: 3000,
+                    shouldShowTimeoutProgress: true,
+                    color: 'danger'
+                });
 
             }
         })
