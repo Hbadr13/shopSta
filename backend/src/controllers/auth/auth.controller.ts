@@ -82,23 +82,27 @@ export const loginUser = async (request: Request, response: Response) => {
         }
     );
 
-    response.cookie("token", token, {
-        httpOnly: true,
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Use 'none' in production for cross-site cookies
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        path: '/', // Available across the entire site
-        secure: process.env.NODE_ENV === "production", // Use 'secure' in production (HTTPS only)
-        domain: process.env.NODE_ENV === "production" ? ".shop-sta.vercel.app" : undefined, // Use a leading dot for subdomains
-    }).json({
-        success: true,
-        message: "Logged in successfully",
-        user: {
-            email: user.email,
-            role: user.role,
-            id: user._id,
-            userName: user.userName,
-        },
-    });
+    response
+        // .cookie("token", token, {
+        //     httpOnly: true,
+        //     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Use 'none' in production for cross-site cookies
+        //     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        //     path: '/', // Available across the entire site
+        //     secure: process.env.NODE_ENV === "production", // Use 'secure' in production (HTTPS only)
+        //     domain: process.env.NODE_ENV === "production" ? ".shop-sta.vercel.app" : undefined, // Use a leading dot for subdomains
+        // })
+        .
+        json({
+            success: true,
+            message: "Logged in successfully",
+            token: token,
+            user: {
+                email: user.email,
+                role: user.role,
+                id: user._id,
+                userName: user.userName,
+            },
+        });
     // response.cookie("token", token,
     //     {
 
