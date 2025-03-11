@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
     baseURL,
     withCredentials: true,
     headers: {
-        Authorization: getCookie('token')
+        authorization: getCookie('token')
     }
 });
 

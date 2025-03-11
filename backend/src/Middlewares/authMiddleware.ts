@@ -2,10 +2,10 @@ import { NextFunction, Request, Response } from "express";
 import jwt from 'jsonwebtoken'
 export const authMiddleware: any = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const token = req.cookies.token;
-        console.log('token', req.cookies.token)
-        console.log('token1', req.headers.Authorization)
-        console.log('Authorization', req.headers)
+        const token = req.headers.authorization;
+        // console.log('token', req.cookies.token)
+        // console.log('token1', req.headers.authorization)
+        // console.log('Authorization', req.headers)
         if (!token) {
             return res.status(401).json({
                 success: false,

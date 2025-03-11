@@ -48,7 +48,7 @@ export const checkAuth = createAsyncThunk(
                 headers: {
                     "Cache-Control":
                         "no-store, no-cache, must-revalidate, proxy-revalidate",
-                    Authorization: getCookie('token')
+                    authorization: getCookie('token')
 
                 },
             }
