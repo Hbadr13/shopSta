@@ -14,7 +14,6 @@ import { logout } from "@/features/auth/authActions";
 import { VscAccount } from "react-icons/vsc";
 import ShopNavigationMenuDemo from "./ShopNavigationMenuDemo";
 import Image from "next/image";
-import { getCookie } from "cookies-next/client";
 const UserCard = () => {
     const dispatch = useAppDispatch()
     const { user } = useAppSelector((state) => state.auth)
