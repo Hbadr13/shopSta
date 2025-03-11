@@ -14,7 +14,6 @@ const FavoriteProducts: React.FC = () => {
 
     useEffect(() => {
         dispatch(getfavorites())
-            .catch((err) => console.error("Failed to fetch favorites:", err));
     }, [dispatch]);
 
     const handelRemoveFromFav = (productId: string) => {
@@ -74,7 +73,7 @@ const FavoriteProducts: React.FC = () => {
                                             <Link href={`/product/${product._id}`} className="bg-store-dark text-white flex justify-center items-center w-full h-11 rounded-xl text-lg font-medium hover:bg-store-dark/90 active:bg-store-dark/80 duration-200">
                                                 Buy Now
                                             </Link>
-                                            <Button onClick={() => handelRemoveFromFav(product._id)} variant="outline" className="h-11 text-lg rounded-xl font-medium">
+                                            <Button onClick={() => handelRemoveFromFav(product._id)} className="h-11 text-lg rounded-xl font-medium">
                                                 <Heart className="scale-150 fill-store-danger text-store-danger" />
                                             </Button>
                                         </div>

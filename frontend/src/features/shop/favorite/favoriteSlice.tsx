@@ -41,7 +41,6 @@ const favoritesSlice = createSlice({
         });
         builder.addCase(addProductTofavorites.fulfilled, (state, action) => {
             state.loadingStatus = 'Product added';
-            console.log('action.payload', action.payload)
             state.favorites.push(action.payload.favorite);
             state.favoritesProductIds.push(action.payload.productId);
         });

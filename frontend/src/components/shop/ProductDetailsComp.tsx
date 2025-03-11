@@ -101,8 +101,6 @@ const ProductDetailsComp = ({ product, type }: { product: Product, type: 'page' 
         router.push('/cart')
     }
     const handelAddToFavorites = (productId: string) => {
-        console.log('handelAddToFavorites', favoritesProductIds, productId)
-
         if (!user) {
             router.push(`/auth/login?return_url=${encodeURIComponent(pathname)}`);
             return
@@ -110,7 +108,6 @@ const ProductDetailsComp = ({ product, type }: { product: Product, type: 'page' 
         dispatch(addProductTofavorites({ productId: productId }))
     }
     const handelremoveFavorites = (productId: string) => {
-        console.log('handelremoveFavorites', favoritesProductIds)
         dispatch(deleteProductFromFavorites({ productId: productId }))
     }
     return (

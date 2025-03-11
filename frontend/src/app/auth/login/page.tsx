@@ -40,7 +40,6 @@ const Login = () => {
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         dispatch(loginUser(formData)).then((data) => {
-            console.log('hello===========>')
             const returnUrl = searchParams.get("return_url");
 
             if (data?.payload?.success) {

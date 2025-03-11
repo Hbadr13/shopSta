@@ -3,11 +3,6 @@ import jwt from 'jsonwebtoken'
 export const authMiddleware: any = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.cookies.token;
-        let token2 = req.headers.authorization
-
-        console.log('\n\ntoken', token)
-        console.log('\ntoken2', token2)
-        console.log('\n\n')
         if (!token) {
             return res.status(401).json({
                 success: false,

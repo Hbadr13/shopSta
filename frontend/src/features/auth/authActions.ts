@@ -21,7 +21,6 @@ export const registerUser = createAsyncThunk("register", async ({ email, userNam
 export const loginUser = createAsyncThunk("login", async ({ email, password }: { email: string, password: string }, { rejectWithValue }) => {
     try {
         const response = await axiosInstance.post("/api/v1/auth/login", { email, password });
-        console.log('login', response.data)
         const { token } = response.data
         setCookie('token', token, { maxAge: 7 * 60 * 60 * 24 })
 

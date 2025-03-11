@@ -66,7 +66,6 @@ const ShopNavbar = () => {
     }
     return (
         <nav className=" shado">
-            ={getCookie('token')}=
             <div className="flex items-center justify-between py-4 px-4 md:px-12 bg-white">
                 <CartPopup />
                 <Link className="text-2xl md:text-3xl font-extrabold" href="/">
