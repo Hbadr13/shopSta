@@ -13,6 +13,7 @@ import mongoose from 'mongoose'
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import accountRouter from './routes/account/accout.route';
 
 dotenv.config()
 cloudinary.v2.config({
@@ -46,23 +47,9 @@ app.use(cors({
         "Expires",
         "Pragma",
     ],
-    credentials: true, // Allow credentials (cookies)
+    credentials: true,
 }));
 
-// app.use(cors(
-//     {
-//         methods: ['GET', 'POST', 'DELETE', 'PUT'],
-//         origin: ['http://localhost:3000', 'http://localhost:3001', 'https://shop-sta.vercel.app', 'http://localhost:5173'],
-//         allowedHeaders: [
-//             "Content-Type",
-//             "Authorization",
-//             "Cache-Control",
-//             "Expires",
-//             "Pragma",
-//         ],
-//         credentials: true,
-//     }
-// ))
 declare global {
     namespace Express {
         interface Request {
@@ -72,12 +59,11 @@ declare global {
 }
 app.use(cookieParser());
 app.use(express.json())
-app.set('trust proxy', 1) // trust first proxy
+app.set('trust proxy', 1)
 
-
-// 
 app.use('/api/v1/auth', userRouter)
 app.use('/api/v1/admin', adminMiddleware, adminRouter)
 app.use('/api/v1/shop', shopRouter)
+app.use('/api/v1/account', authMiddleware, accountRouter)
 app.use('/api/v1/shop/favorites', authMiddleware, favoriteRouter)
 app.use('/api/v1/shop/order', authMiddleware, orderRouter)

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/formatPrice";
-import { FiFileText, FiEye, FiSearch, FiTruck, FiPackage, FiClock, FiCheckCircle, FiAlertCircle, FiCreditCard } from "react-icons/fi";
+import { FiFileText, FiEye, FiSearch, FiTruck, FiPackage, FiClock, FiCheckCircle, FiAlertCircle, FiCreditCard, FiShoppingBag } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import "jspdf-autotable";
 import {
@@ -25,6 +25,7 @@ import "jspdf-autotable"; // Import the autoTable plugin
 import { jsPDF } from "jspdf";
 import Image from "next/image";
 import { addToast } from "@heroui/react";
+import Link from "next/link";
 type OrderStatus = "pending" | "cancelled" | "processing" | "shipped" | "delivered";
 
 const getProgress = (status: OrderStatus): number => {
@@ -119,137 +120,155 @@ const OrderHistoryPage = () => {
     return (
         <div className="max-w-7xl mx-auto px-2 md:px-4 py-8">
             <h1 className="text-3xl font-bold">Order History</h1>
-
-            <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                <div className="relative flex-1">
-                    <input
-                        type="text"
-                        placeholder="Search by Order ID or Date"
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                </div>
-                <select
-                    className="px-4 py-2 border border-gray-300 rounded-lg"
-                    value={filterStatus}
-                    onChange={(e) => setFilterStatus(e.target.value)}
-                >
-                    <option className="bg-gray-200" value="">All Statuses</option>
-                    <option value="processing">Processing</option>
-                    <option value="shipped">Shipped</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="pending">Pending</option>
-                    <option value="cancelled">Cancelled</option>
-                </select>
-            </div>
-            <div className="mt-8 space-y-4 divide-y">
-                {filteredOrders.map((order) => (
-                    <div key={order._id} className="bg-white md:rounded-lg md:shadow-md  p-2 md:p-6">
-                        <div className="flex flex-col xl:flex-row space-y-3  xl:space-y-0  xl:justify-between xl:items-center">
-                            <div>
-                                <p className="font-semibold">Order ID: {order._id}</p>
-                                <p className="text-gray-500">Date: {moment(order.createdAt).format('LL')}</p>
-                                <p className="text-gray-500">Status: {order.orderStatus}</p>
-                                <p className="text-gray-500">Total: {formatPrice(order.totalAmount)} DH</p>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex items-center justify-betweenrounded-lg space-x-3">
-                                        <div className="flex items-center justify-between">
-
-                                            {order.paymentStatus == 'paid' ? (
-                                                <FiCheckCircle className="text-green-500 text-2xl  mr-2 w-5 h-5" />
-                                            ) : (
-                                                <FiAlertCircle className="text-red-500 text-2xl mr-2 w-5 h-5" />
-                                            )}
-                                            <p className="text-gray-700 font-semibold">
-                                                {getPaymentStatusText(order.paymentStatus)}
-                                            </p>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div className="flex items-centerrounded-lg">
-                                        {
-                                            order.orderStatus == 'pending' || order.orderStatus == 'processing' ? (
-                                                <MdOutlinePendingActions className="text-gray-700 text-2xl mr-2 w-5 h-5" />
-                                            ) :
-                                                order.orderStatus == 'cancelled' ? (
-                                                    <FiAlertCircle className="text-red-500 text-2xl mr-2 w-5 h-5" />
-                                                ) :
-                                                    (
-                                                        <FiTruck className="text-green-500 text-2xl mr-2 w-5 h-5" />
-                                                    )}
-                                        <p className="text-gray-700 font-semibold capitalize">
-                                            {getOrderStatusText(order.orderStatus)}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 space-x-0 md:space-x-4">
-                                <Button
-                                    className="active:opacity-60 transition-all duration-200 w-auto h-auto"
-
-                                    variant="outline"
-                                    onClick={() => {
-                                        setSelectedOrder(order);
-                                        setIsModalOpen(true);
-                                    }}
-                                >
-                                    <FiEye className="mr-2" />
-                                    <div className="block">
-                                        View Order
-                                    </div>
-                                </Button>
-                                {
-                                    order.paymentStatus == 'pending' ? <Button
-                                        className="active:opacity-60 transition-all duration-200 bg-blue-600 text-white w-autoh-auto"
-                                        onClick={() => router.push(`/checkout/order/${order?._id}/review`)}
-                                    >
-                                        <FiCreditCard className="mr-2" /> Pay now
-                                    </Button>
-                                        : <Button
-                                            className="active:opacity-60 transition-all duration-200 w-auto h-auto"
-                                            variant="outline"
-                                            onClick={() => generatePDF(order)}
-                                        >
-                                            <FiFileText className="mr-2 " />
-                                            <div className="block">
-                                                Download Invoice
-                                            </div>
-                                        </Button>
-                                }
-                            </div>
-                        </div>
-
-                        <div className="mt-4">
-                            <div className="relative pt-4">
-                                <div className="h-1.5 md:h-2 bg-gray-200 rounded-full">
-                                    <div
-                                        className="h-1.5 md:h-2 bg-black rounded-full"
-                                        style={{ width: `${getProgress(order.orderStatus)}%` }}
-                                    ></div>
-                                </div>
-                                <div className="flex justify-between mt-4">
-                                    <div className={`${(order.orderStatus == 'processing' || order.orderStatus == 'shipped' || order.orderStatus == 'delivered') ? '' : 'text-store-gray-400'} text-center`}>
-                                        <FiClock className="text-medium md:text-2xl mx-auto" />
-                                        <p className="mt-1 md:mt-2 text-xs md:text-base">Processing</p>
-                                    </div>
-                                    <div className={`${(order.orderStatus == 'shipped' || order.orderStatus == 'delivered') ? '' : 'text-store-gray-400'} text-center`}>
-                                        <FiTruck className="text-medium md:text-2xl mx-auto" />
-                                        <p className="mt-1 md:mt-2 text-xs md:text-base">Shipped</p>
-                                    </div>
-                                    <div className={`${(order.orderStatus == 'delivered') ? '' : 'text-store-gray-400'} text-center`}>
-                                        <FiPackage className="text-medium md:text-2xl mx-auto" />
-                                        <p className="mt-1 md:mt-2 text-xs md:text-base">Delivered</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            {
+                filteredOrders.length == 0 ? <div className="flex flex-col items-center justify-center py-14 md:py-24 text-center text-lg text-gray-600">
+                    <div className="bg-gray-100 p-6 rounded-full mb-4">
+                        <FiShoppingBag className="w-16 h-16 text-gray-400" />
                     </div>
-                ))}
-            </div>
+                    <p className="mb-2">Your order history is empty.</p>
+                    <p className="mb-4">Start shopping and place your first order!</p>
+                    <Link
+                        href="/products/all/best-seller"
+                        className="text-store-dark hover:text-store-dark/80 font-semibold border border-store-dark px-4 py-2 rounded-md transition-all"
+                    >
+                        Browse Products
+                    </Link>
+                </div>
+
+                    : <div className="">
+
+                        <div className="mt-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                            <div className="relative flex-1">
+                                <input
+                                    type="text"
+                                    placeholder="Search by Order ID or Date"
+                                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                            </div>
+                            <select
+                                className="px-4 py-2 border border-gray-300 rounded-lg"
+                                value={filterStatus}
+                                onChange={(e) => setFilterStatus(e.target.value)}
+                            >
+                                <option className="bg-gray-200" value="">All Statuses</option>
+                                <option value="processing">Processing</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="pending">Pending</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+
+                        <div className="mt-8 space-y-4 divide-y">
+                            {filteredOrders.map((order) => (
+                                <div key={order._id} className="bg-white md:rounded-lg md:shadow-md  p-2 md:p-6">
+                                    <div className="flex flex-col xl:flex-row space-y-3  xl:space-y-0  xl:justify-between xl:items-center">
+                                        <div>
+                                            <p className="font-semibold">Order ID: {order._id}</p>
+                                            <p className="text-gray-500">Date: {moment(order.createdAt).format('LL')}</p>
+                                            <p className="text-gray-500">Status: {order.orderStatus}</p>
+                                            <p className="text-gray-500">Total: {formatPrice(order.totalAmount)} DH</p>
+                                            <div className="space-y-2 text-sm">
+                                                <div className="flex items-center justify-betweenrounded-lg space-x-3">
+                                                    <div className="flex items-center justify-between">
+
+                                                        {order.paymentStatus == 'paid' ? (
+                                                            <FiCheckCircle className="text-green-500 text-2xl  mr-2 w-5 h-5" />
+                                                        ) : (
+                                                            <FiAlertCircle className="text-red-500 text-2xl mr-2 w-5 h-5" />
+                                                        )}
+                                                        <p className="text-gray-700 font-semibold">
+                                                            {getPaymentStatusText(order.paymentStatus)}
+                                                        </p>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div className="flex items-centerrounded-lg">
+                                                    {
+                                                        order.orderStatus == 'pending' || order.orderStatus == 'processing' ? (
+                                                            <MdOutlinePendingActions className="text-gray-700 text-2xl mr-2 w-5 h-5" />
+                                                        ) :
+                                                            order.orderStatus == 'cancelled' ? (
+                                                                <FiAlertCircle className="text-red-500 text-2xl mr-2 w-5 h-5" />
+                                                            ) :
+                                                                (
+                                                                    <FiTruck className="text-green-500 text-2xl mr-2 w-5 h-5" />
+                                                                )}
+                                                    <p className="text-gray-700 font-semibold capitalize">
+                                                        {getOrderStatusText(order.orderStatus)}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 space-x-0 md:space-x-4">
+                                            <Button
+                                                className="active:opacity-60 transition-all duration-200 w-auto h-auto"
+
+                                                variant="outline"
+                                                onClick={() => {
+                                                    setSelectedOrder(order);
+                                                    setIsModalOpen(true);
+                                                }}
+                                            >
+                                                <FiEye className="mr-2" />
+                                                <div className="block">
+                                                    View Order
+                                                </div>
+                                            </Button>
+                                            {
+                                                order.paymentStatus == 'pending' ? <Button
+                                                    className="active:opacity-60 transition-all duration-200 bg-blue-600 text-white w-autoh-auto"
+                                                    onClick={() => router.push(`/checkout/order/${order?._id}/review`)}
+                                                >
+                                                    <FiCreditCard className="mr-2" /> Pay now
+                                                </Button>
+                                                    : <Button
+                                                        className="active:opacity-60 transition-all duration-200 w-auto h-auto"
+                                                        variant="outline"
+                                                        onClick={() => generatePDF(order)}
+                                                    >
+                                                        <FiFileText className="mr-2 " />
+                                                        <div className="block">
+                                                            Download Invoice
+                                                        </div>
+                                                    </Button>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <div className="relative pt-4">
+                                            <div className="h-1.5 md:h-2 bg-gray-200 rounded-full">
+                                                <div
+                                                    className="h-1.5 md:h-2 bg-black rounded-full"
+                                                    style={{ width: `${getProgress(order.orderStatus)}%` }}
+                                                ></div>
+                                            </div>
+                                            <div className="flex justify-between mt-4">
+                                                <div className={`${(order.orderStatus == 'processing' || order.orderStatus == 'shipped' || order.orderStatus == 'delivered') ? '' : 'text-store-gray-400'} text-center`}>
+                                                    <FiClock className="text-medium md:text-2xl mx-auto" />
+                                                    <p className="mt-1 md:mt-2 text-xs md:text-base">Processing</p>
+                                                </div>
+                                                <div className={`${(order.orderStatus == 'shipped' || order.orderStatus == 'delivered') ? '' : 'text-store-gray-400'} text-center`}>
+                                                    <FiTruck className="text-medium md:text-2xl mx-auto" />
+                                                    <p className="mt-1 md:mt-2 text-xs md:text-base">Shipped</p>
+                                                </div>
+                                                <div className={`${(order.orderStatus == 'delivered') ? '' : 'text-store-gray-400'} text-center`}>
+                                                    <FiPackage className="text-medium md:text-2xl mx-auto" />
+                                                    <p className="mt-1 md:mt-2 text-xs md:text-base">Delivered</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>}
 
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                 <DialogContent>

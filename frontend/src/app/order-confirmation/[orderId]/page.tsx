@@ -106,7 +106,7 @@ export default function OrderReviewPage() {
                                 <span className="font-semibold">Email:</span> {user?.email}
                             </p>
                             <p className="text-gray-600">
-                                <span className="font-semibold">Name:</span> {user?.userName}
+                                <span className="font-semibold">Name:</span> {user?.firstName} {user.lastName}
                             </p>
                         </div>
                     </div>

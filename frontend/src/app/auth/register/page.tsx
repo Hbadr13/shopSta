@@ -14,7 +14,8 @@ const AuthRegister = () => {
     const route = useRouter();
 
     const [formData, setFormData] = useState({
-        userName: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
     });
@@ -75,12 +76,21 @@ const AuthRegister = () => {
             <form onSubmit={onSubmit} className="space-y-4">
                 <Input
                     type="text"
-                    name="userName"
-                    label="Username"
-                    value={formData.userName}
+                    name="firstName"
+                    label="First name"
+                    value={formData.firstName}
                     onChange={handleInputChange}
                     required
                     endContent={<User2 className="w-7 h-7 mb-1 text-stone-500" />}
+                />
+                <Input
+                    type="text"
+                    name="lastName"
+                    label="Last name"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                // required
+                // endContent={<UserCheck className="w-7 h-7 mb-1 text-stone-500" />}
                 />
                 <Input
                     type="email"
@@ -109,7 +119,7 @@ const AuthRegister = () => {
                         {showPassword ? <EyeOff className="w-7 h-7 mb-1 text-stone-500" /> : <Eye className="w-7 h-7 mb-1 text-stone-500" />}
                     </button>
                 </div>
-                <Button type="submit" className="active:opacity-70 transition-all duration-200 mt-2 w-full">
+                <Button type="submit" className="active:opacity-70 py-1.5 transition-all duration-200 mt-2 w-full">
                     Sign Up
                 </Button>
             </form>

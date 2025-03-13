@@ -22,9 +22,10 @@ import { LiaShippingFastSolid } from "react-icons/lia";
 import { GoVerified } from "react-icons/go";
 import { RiDiscountPercentFill } from "react-icons/ri";
 import { GrCodeSandbox } from "react-icons/gr";
-import { useAppDispatch } from "@/redux/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/redux-hooks";
 import { Button, Input } from "@heroui/react";
 import Image from "next/image";
+import { LogOutIcon } from "lucide-react";
 
 const messages = [
     {
@@ -95,6 +96,7 @@ interface INotification extends INotifs {
 
 const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, label: string }) => {
     const dispatch: AppDispatch = useAppDispatch()
+    const { user } = useAppSelector((state) => state.auth)
     const _notifications: INotification[] = notifications.map((it) => {
 
         return {
@@ -129,7 +131,7 @@ const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, l
                         <div className="flex items-center space-x-2">
                             <Image alt="s2" width={200} height={200} className="w-10 h-10 object-cover rounded-full" src="/profile-admin.png" />
                             <div className=" text-sm">
-                                <div className="font-semibold">hbadr</div>
+                                <div className="font-semibold">{user?.firstName} {user?.lastName}</div>
                                 <div className="text-eco-black-v2">admin</div>
                             </div>
                         </div>
@@ -137,7 +139,7 @@ const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, l
                 </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className={` ${label == 'userInfo' ? 'w-[280px]' : 'w-[340px]'} mt-5 rounded-2xl`}>
-                <DropdownMenuLabel className='text-lg p-4'>{label == 'userInfo' ? 'Welcome hbadr!' : label}</DropdownMenuLabel>
+                <DropdownMenuLabel className='text-lg p-4'>{label == 'userInfo' ? `Welcome ${user?.firstName}!` : label}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup className='space-y-2'>
 
@@ -173,7 +175,7 @@ const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, l
                                 <div className="flex items-center space-x-2">
                                     <Image alt="s4" width={200} height={200} className="w-10 h-10 object-cover rounded-full" src="/profile-admin.png" />
                                     <div className=" text-sm">
-                                        <div className="font-semibold">hbadr</div>
+                                        <div className="font-semibold">{user?.firstName} {user?.lastName}</div>
                                         <div className="text-eco-black-v2">admin</div>
                                     </div>
                                 </div>
@@ -182,7 +184,10 @@ const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, l
                 <div className="w-full p-2 mt-2">
                     {
                         label == 'userInfo' ?
-                            <Button onPress={() => dispatch(logout())} className="active:opacity-60 transition-all duration-200 w-full rounded-2xl text-white font-bold bg-eco-orange-v0 text-center py-6" variant="faded">Loug out</Button>
+                            <Button onPress={() => dispatch(logout())} className="active:opacity-60 transition-all duration-200 w-full rounded-2xl text-white font-bold bg-eco-orange-v0 text-center py-6" variant="faded">
+                                <LogOutIcon />
+                                Logout
+                            </Button>
                             : <Button className="active:opacity-60 transition-all duration-200 w-full rounded-2xl text-white font-bold bg-eco-blue-v0 text-center py-6" variant="faded">View all</Button>
                     }
                 </div>

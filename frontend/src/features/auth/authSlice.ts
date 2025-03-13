@@ -3,7 +3,7 @@ import { checkAuth, loginUser, logout, registerUser } from './authActions';
 
 
 interface AuthState {
-    user: null | { id: string; userName: string; email: string; role: string };
+    user: null | { id: string; lastName: string; firstName: string; email: string; role: string };
     isLoading: boolean;
     error: null | string;
     isAuthenticated: boolean
@@ -53,6 +53,8 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.user = action.payload.success ? action.payload.user : null;
                 state.isAuthenticated = action.payload.success;
+                console.log('auth', state.user)
+
             })
             .addCase(checkAuth.rejected, (state) => {
                 state.isLoading = false;

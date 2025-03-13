@@ -1,10 +1,10 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import User from "../../model/User";
 import bcrypt from "bcryptjs";
-import jwt from 'jsonwebtoken'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 export const registerUser = async (request: Request, response: Response): Promise<void> => {
     try {
-        const { email, password, userName } = request.body
+        const { email, lastName, firstName, password } = request.body
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const usr = await User.findOne({ email });
@@ -17,10 +17,11 @@ export const registerUser = async (request: Request, response: Response): Promis
         }
 
         const UserData = new User({
-            userName,
+            lastName,
+            firstName,
             email,
             password: hashedPassword,
-            role: 'admin'
+            role: 'user'
         });
 
         await UserData.save();
@@ -73,7 +74,8 @@ export const loginUser = async (request: Request, response: Response) => {
         {
             _id: user._id,
             email: user.email,
-            userName: user.userName,
+            firstName: user.firstName,
+            lastName: user.lastName,
             role: user.role
         },
         process.env.CLIENT_SECRET_KEY,
@@ -82,16 +84,7 @@ export const loginUser = async (request: Request, response: Response) => {
         }
     );
 
-    response
-        // .cookie("token", token, {
-        //     httpOnly: true,
-        //     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Use 'none' in production for cross-site cookies
-        //     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        //     path: '/', // Available across the entire site
-        //     secure: process.env.NODE_ENV === "production", // Use 'secure' in production (HTTPS only)
-        //     domain: process.env.NODE_ENV === "production" ? ".shop-sta.vercel.app" : undefined, // Use a leading dot for subdomains
-        // })
-        .
+    response.
         json({
             success: true,
             message: "Logged in successfully",
@@ -100,29 +93,10 @@ export const loginUser = async (request: Request, response: Response) => {
                 email: user.email,
                 role: user.role,
                 id: user._id,
-                userName: user.userName,
+                firstName: user.firstName,
+                lastName: user.lastName,
             },
         });
-    // response.cookie("token", token,
-    //     {
-
-
-    //         httpOnly: true,
-    //         sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-    //         maxAge: 7 * 24 * 60 * 60 * 1000,
-    //         path: '/',
-    //         secure: process.env.NODE_ENV === "production",
-    //         domain: process.env.NODE_ENV === "production" ? ".shop-sta.vercel.app" : "localhost",
-    //     }).json({
-    //         success: true,
-    //         message: "Logged in successfully",
-    //         user: {
-    //             email: user.email,
-    //             role: user.role,
-    //             id: user._id,
-    //             userName: user.userName,
-    //         },
-    //     });
 }
 
 export const logoutUser = (request: Request, response: Response) => {
@@ -132,8 +106,9 @@ export const logoutUser = (request: Request, response: Response) => {
     })
 }
 
-export const checkAuth = (request: Request, response: Response) => {
-    const user = request.user;
+export const checkAuth = async (request: Request, response: Response) => {
+    const email = typeof request.user === "string" ? request.user : (request.user as JwtPayload).email;
+    const user = await User.findOne({ email })
     response.status(200).json({
         success: true,
         message: "Authenticated user!",

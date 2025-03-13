@@ -36,7 +36,7 @@ const links = [
         title: "My Account",
         items: [
             { name: "My account", href: "/account" },
-            { name: "My address", href: "/account/address" },
+            { name: "My address", href: "/account/addresses" },
             { name: "My wishlist", href: "/account/wishlist" },
             { name: "Order history", href: "/orders" },
         ],

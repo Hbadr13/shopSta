@@ -46,18 +46,16 @@
   font-family: 'shopStorFont2';
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */
 
-/* Ensure the element is scrollable */
-.scroll-hidden {
+
+.scroll-hidden::-webkit-scrollbar {
   overflow: auto;
-  /* or overflow-y: scroll; */
   -ms-overflow-style: none;
-  /* Hide scrollbar in IE and Edge */
   scrollbar-width: none;
-  /* Hide scrollbar in Firefox */
+  display: none;
 }
 
 @layer base {
@@ -133,6 +131,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

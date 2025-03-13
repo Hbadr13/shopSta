@@ -1,15 +1,15 @@
 import { Virtual } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/virtual';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
-
+import { useState, useRef } from 'react';
+import { Swiper as SwiperClass } from 'swiper';
 const HeroBanner = () => {
     const [audience, setAudience] = useState('Woman')
+    const swiperRef = useRef<SwiperClass | null>(null);
+
     const slides = [
         {
             id: 0,
@@ -17,7 +17,7 @@ const HeroBanner = () => {
             shorDescription: 'Fashion sale up to 40% off',
             description: 'Latest trend in fashion',
             image: '/woman1.png',
-            slug: '#'
+            slug: '/products/woman/best-seller'
         },
         {
             id: 1,
@@ -25,7 +25,7 @@ const HeroBanner = () => {
             shorDescription: 'Fashion sale up to 40% off',
             description: 'Latest trend in fashion',
             image: '/man1.png',
-            slug: '#'
+            slug: '/products/man/best-seller'
         },
         {
             id: 2,
@@ -33,13 +33,26 @@ const HeroBanner = () => {
             shorDescription: 'Fashion sale up to 40% off',
             description: 'Latest trend in fashion',
             image: '/kid1.png',
-            slug: '#'
+            slug: '/products/kids/best-seller'
         },
     ]
-
+    const handleSlideChange = (index: number, category: string) => {
+        setAudience(category);
+        swiperRef.current?.slideTo(index);
+    };
     return (
         <div className="w-full relative overflow-hidden ">
-            <Swiper className='z-0 relative w-screen' modules={[Virtual]} spaceBetween={0} slidesPerView={1} virtual>
+            <Swiper
+
+                className="z-0 relative w-screen"
+                modules={[Virtual]}
+                spaceBetween={0}
+                slidesPerView={1}
+                virtual
+                onSwiper={(swiper) => (swiperRef.current = swiper)}
+            >
+
+
                 {slides.map((slideContent, index) => (
                     <SwiperSlide className=' ' key={slideContent.category} virtualIndex={index}>
                         <div className="flex flex-1 flex-col md:flex-row h-full">
@@ -49,9 +62,9 @@ const HeroBanner = () => {
 
                                     src={slideContent.image}
                                     alt="man"
-                                    width={1000}
-                                    height={1000}
-                                    className="w-full  aspect-auto   max-h-[200px] md:max-h-[950px] object-cover"
+                                    width={2000}
+                                    height={2000}
+                                    className="w-full  aspect-auto   max-h-[240px] md:max-h-[860px] object-cover"
                                 />
                             </div>
 
@@ -79,7 +92,9 @@ const HeroBanner = () => {
                     slides.map((it, index) =>
                         <button
                             key={index}
-                            onClick={() => setAudience(it.category)}
+                            // onClick={() => setAudience(it.category)}
+                            onClick={() => handleSlideChange(index, it.category)}
+
                             className={`active:opacity-60 transition-all duration-200 ${audience == it.category ? 'text-store-footer-hover border-b-1 border-store-footer-hover' : 'text-white'}`}  >{it.category}</button>
                     )
                 }

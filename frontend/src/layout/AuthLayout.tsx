@@ -3,11 +3,11 @@ import { ReactNode } from "react";
 
 function AuthLayout({ children }: { children: ReactNode }) {
     return (
-        <div className="flex h-auto lg:min-h-screen w-full">
+        <div className="flex h-auto lg:min-h-[calc(100vh-120px)] w-full">
             <div className="hidden lg:flex items-center justify-center bg-black w-1/2 px-12">
                 <div className="max-w-md space-y-6 text-center text-primary-foreground">
                     <h1 className="text-4xl font-extrabold tracking-tight">
-                        Welcome to ECommerce Shopping
+                        Welcome to ShopSta store
                     </h1>
                 </div>
             </div>

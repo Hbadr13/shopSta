@@ -9,9 +9,9 @@ import {
 } from 'cookies-next/client';
 import axios from "axios";
 
-export const registerUser = createAsyncThunk("register", async ({ email, userName, password }: { email: string, userName: string, password: string }, { rejectWithValue }) => {
+export const registerUser = createAsyncThunk("register", async ({ email, firstName, lastName, password, }: { email: string, lastName: string, firstName: string, password: string }, { rejectWithValue }) => {
     try {
-        const response = await axiosInstance.post("/api/v1/auth/register", { email, userName, password })
+        const response = await axiosInstance.post("/api/v1/auth/register", { email, lastName, firstName, password })
         return response.data;
     } catch (error: unknown) {
         return handleAxiosError(error, rejectWithValue);

@@ -7,6 +7,7 @@ import { Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
+import { FiHeart } from 'react-icons/fi';
 
 const FavoriteProducts: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -23,13 +24,21 @@ const FavoriteProducts: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="container mx-auto px-4">
-                <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">Your Favorite Products</h1>
+                <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">Your Wishlist Products</h1>
 
                 {favorites.length === 0 ? (
-                    <div className="text-center text-lg text-gray-600">
-                        <p>Your favorites list is empty.</p>
-                        <p>Explore products and add them to your favorites!</p>
-                        <Link href="/shop" className="text-store-dark hover:text-store-dark/80 font-semibold">Browse Products</Link>
+                    <div className="flex flex-col items-center justify-center py-14 md:py-24 text-center text-lg text-gray-600">
+                        <div className="bg-gray-100 p-6 rounded-full mb-4">
+                            <FiHeart className="w-16 h-16 text-gray-400" />
+                        </div>
+                        <p className="mb-2">Your wishlist is empty.</p>
+                        <p className="mb-4">Explore products and add them to your wishlist!</p>
+                        <Link
+                            href="/products/all/best-seller"
+                            className="text-store-dark hover:text-store-dark/80 font-semibold border border-store-dark px-4 py-2 rounded-md transition-all"
+                        >
+                            Browse Products
+                        </Link>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

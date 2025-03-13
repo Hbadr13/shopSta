@@ -40,7 +40,7 @@ export function DrawerDialogDemo({ product }: { product: Product }) {
         return null;
     }
 
-    if (windowWidth > 760) {
+    if (windowWidth > 960) {
         return (
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
@@ -69,7 +69,7 @@ export function DrawerDialogDemo({ product }: { product: Product }) {
                 <DrawerHeader className="text-left">
                     <DrawerTitle>Product details</DrawerTitle>
                 </DrawerHeader>
-                <div className="h-[75vh]  overflow-y-scroll p-2">
+                <div className="h-[75vh] overflow-y-auto  scroll-hidden  p-2">
                     <ProductDetailsComp product={product} type="dialog" />
                 </div>
             </DrawerContent>

@@ -151,7 +151,7 @@ export default function ProductPage() {
                     <AccordionContent>
                         <div className="flex flex-col gap-2">
                             <p className="text-sm text-gray-500">
-                                The highest price is $74.00
+                                The highest price is 12000 DH
                             </p>
                             <div className="flex items-center gap-2">
                                 <span className="text-gray-600">From $</span>

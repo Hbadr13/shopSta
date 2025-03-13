@@ -69,7 +69,7 @@ export default function CheckoutPage() {
 
     useEffect(() => {
         if (user) {
-            setFullName(user.userName)
+            setFullName(user.firstName + ' ' + user.lastName)
             setEmail(user.email)
         }
     }, [user])

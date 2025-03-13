@@ -9,6 +9,7 @@ import shopOrderSlices from '@/features/shop/order/orderSlice'
 import windowPropsSlice from '@/features/global/windowProps'
 import favoriteSlice from '@/features/shop/favorite/favoriteSlice'
 import popupSlice from '@/features/global/popupSlice'
+import accountSlice from '@/features/account/accountSlice'
 const persistConfig = {
     key: "cart",
     storage,
@@ -25,7 +26,8 @@ const store = configureStore({
         shopOrderSlices: shopOrderSlices,
         windowPropsSlice: windowPropsSlice,
         favoriteSlice: favoriteSlice,
-        popupSlice: popupSlice
+        popupSlice: popupSlice,
+        account: accountSlice
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ serializableCheck: false }),
