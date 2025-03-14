@@ -114,10 +114,10 @@ export default function OrderReviewPage() {
                         </h2>
                         <div className="mt-4 space-y-2 bg-gray-50 p-4 rounded-lg">
                             <p className="text-gray-600">
-                                <span className="font-semibold">Name:</span> {order.addressInfo.address}
+                                <span className="font-semibold">City:</span> {order.addressInfo.city}
                             </p>
                             <p className="text-gray-600">
-                                <span className="font-semibold">Address:</span> {order.addressInfo.address}, {order.addressInfo.city}
+                                <span className="font-semibold">Address:</span> {order.addressInfo.address}
                             </p>
                             <p className="text-gray-600">
                                 <span className="font-semibold">Phone:</span> {order.addressInfo.phone}

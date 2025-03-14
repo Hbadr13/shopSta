@@ -92,9 +92,9 @@ export default function OrderDetailsPage() {
                         </div>
                     </div>
                 </CardHeader>
-                <CardContent className="space-y-8 p-6">
+                <CardContent className="space-y-8 p-3 md:p-6">
 
-                    <div className="flex items-center justify-between bg-gray-100 p-4 rounded-lg">
+                    <div className="flex items-center justify-between bg-gray-100 p-2 md:p-4 rounded-lg">
                         <div className="flex items-center justify-between">
 
                             {order.paymentStatus == 'paid' ? (
@@ -115,7 +115,7 @@ export default function OrderDetailsPage() {
                     </div>
 
 
-                    <div className="flex items-center bg-gray-100 p-4 rounded-lg">
+                    <div className="flex items-center bg-gray-100 p-2 md:p-4 rounded-lg">
                         {
                             order.orderStatus == 'pending' || order.orderStatus == 'processing' ? (
                                 <MdOutlinePendingActions className="text-gray-700 text-2xl mr-3" />

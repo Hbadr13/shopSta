@@ -15,7 +15,6 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
             res.status(404).json({ success: false, message: "User not found" });
             return;
         }
-        console.log('user', user)
         res.status(200).json({ success: true, message: "User fetched successfully", account: user });
     } catch (error) {
         res.status(500).json({ success: false, message: "Server error", error });

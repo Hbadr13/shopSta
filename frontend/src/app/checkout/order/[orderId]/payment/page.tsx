@@ -17,12 +17,19 @@ const Page = () => {
         if (dispatch && orderId && typeof orderId === "string") {
 
             dispatch(payTheOrder({ orderId, paymentStatus: 'paid' })).then((state) => {
-                if (state.payload.success)
+                if (state.payload.success) {
+                    addToast({
+                        title: state.payload.message,
+                        color: 'success',
+                        description: `Order id: ${orderId}`,
+                        timeout: 2000
+                    })
                     router.push(`/checkout/order/${orderId}/thank-you`);
+                }
                 else {
                     addToast({
                         title: state.payload.message,
-                        color: state.payload.message != 'Order has already been paid' ? 'danger' : 'success',
+                        color: state.payload.message != 'Order has already been paid' ? 'success' : 'danger',
                         description: `Order id: ${orderId}`,
                         timeout: 2000
                     })
@@ -31,7 +38,7 @@ const Page = () => {
                             router.push(`/order/${orderId}/view`);
                         else
                             router.push(`/`);
-                    }, 3200);
+                    }, 2000);
                 }
             });
         }

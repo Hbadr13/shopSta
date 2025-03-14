@@ -10,17 +10,6 @@ import { ToastProvider } from "@heroui/toast";
 import ShopNavbar from "@/layout/ShopNavbar";
 import Footer from "@/layout/shopFooter";
 import { usePathname } from "next/navigation";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
 
 const Demo = (
     {
@@ -33,7 +22,8 @@ const Demo = (
 
     return (
         <div
-            className={`  ${geistSans.variable} ${geistMono.variable} antialiased ${pathname.startsWith('/admin') ? 'adminFont1' : 'fontfamily1'} `}
+            className={`   ${pathname.startsWith('/admin') ? 'adminFont1' : 'fontfamily1'} `}
+        // className={`  ${geistSans.variable} ${geistMono.variable} antialiased ${pathname.startsWith('/admin') ? 'adminFont1' : 'fontfamily1'} `}
 
         >
 

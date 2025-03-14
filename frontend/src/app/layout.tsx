@@ -21,7 +21,7 @@ const RootLayout = ({
 
   return (
     <html lang="en">
-      <body className=" overflow-x-hidden w-full"
+      <body className="fontfamily1 overflow-x-hidden w-full"
       >
         <Demo>
           {children}

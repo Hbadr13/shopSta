@@ -14,9 +14,14 @@ import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import Image from "next/image";
 import { clearCart } from "@/features/shop/cartSlice";
 import { addToast } from "@heroui/react";
+import { FaCity } from "react-icons/fa";
+import { NotebookIcon, Phone } from "lucide-react";
+import { LiaCitySolid } from "react-icons/lia";
+import { getUserProfile } from "@/features/account/accountActions";
 
 export default function CheckoutPage() {
     const { user, isLoading } = useAppSelector((state) => state.auth);
+    const { account } = useAppSelector((state) => state.account);
     const dispatch = useAppDispatch()
     const { cart } = useAppSelector((state) => state.cart);
     const subtotal: number = cart.reduce((acc, item) => acc + (item.product.salePrice || item.product.price) * item.quantity, 0);
@@ -26,18 +31,36 @@ export default function CheckoutPage() {
     const [step, setStep] = useState(1);
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
-    const [shippingAddress, setShippingAddress] = useState("khouribga 11");
+    const [city, setcity] = useState('');
+    const [notes, setNotes] = useState('');
+    const [codePostal, setcodePostal] = useState('');
+    const [phone, setphone] = useState('');
+    const [shippingAddress, setShippingAddress] = useState('');
     const [cardNumber, setCardNumber] = useState("2234 2342 3424 3423");
     const [expiryDate, setExpiryDate] = useState("11/11");
     const [cvv, setCvv] = useState("888");
     const [waiting, setWaiting] = useState(false)
     const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    const isValidPhoneNumber = (phone: string): boolean => {
+        const phn = phone.replaceAll(' ', '')
+        return /^\+\d+$/.test(phn) && phn.length > 8;
+    };
+    const isDeliveryStepValid = fullName.trim() && fullName.length > 4 &&
+        email.trim() && isValidEmail(email) && shippingAddress.trim() &&
+        isValidPhoneNumber(phone) && codePostal.trim() && city.trim();
 
-    const isDeliveryStepValid = fullName.trim() && fullName.length > 4 && email.trim() && isValidEmail(email) && shippingAddress.trim();
     const isPaymentStepValid =
         cardNumber.replace(/\s/g, "").length === 16 &&
         /^\d{2}\/\d{2}$/.test(expiryDate) &&
         (cvv.length === 3 || cvv.length === 4);
+    function formatPhoneNumber(phone: string) {
+        const phn = phone
+        const cleaned = phn.replace(/[^\d+]/g, '');
+        const countryCode = cleaned.slice(0, 4); // +212, +123, etc.
+        const restOfNumber = cleaned.slice(4);
+        const formattedNumber = restOfNumber.replace(/(\d{3})(?=\d)/g, '$1 ');
+        return `${countryCode} ${formattedNumber}`.trim();
+    }
 
 
     const formatCardNumber = (value: string) => {
@@ -66,13 +89,23 @@ export default function CheckoutPage() {
             setStep(3);
         }
     };
-
+    useEffect(() => {
+        dispatch(getUserProfile());
+    }, [dispatch]);
     useEffect(() => {
         if (user) {
             setFullName(user.firstName + ' ' + user.lastName)
             setEmail(user.email)
         }
-    }, [user])
+        const addrs = account?.addresses.find((it) => it.isDefault)
+        console.log('addrs', addrs)
+        if (addrs) {
+            setShippingAddress(addrs.address1)
+            setcity(addrs.city)
+            setcodePostal(addrs.postalCode)
+            setphone('+' + addrs.phone)
+        }
+    }, [user, account])
 
     const handelCompletePurchase = () => {
         setWaiting(true)
@@ -89,9 +122,9 @@ export default function CheckoutPage() {
             }),
             addressInfo: {
                 address: shippingAddress,
-                city: 'khouribga',
-                pincode: 'khouribga',
-                phone: 'khouribga',
+                city,
+                pincode: codePostal,
+                phone,
                 notes: 'I want my products asap'
 
             },
@@ -176,7 +209,6 @@ export default function CheckoutPage() {
                                 </button>
                             </div>
 
-                            {/* Progress Line */}
                             <div className="absolute bottom-0 left-0 h-1 bg-gray-200 w-full">
                                 <div
                                     className="h-1 bg-black transition-all duration-300"
@@ -189,33 +221,91 @@ export default function CheckoutPage() {
 
                         {step === 1 && (
                             <div className="mt-4 space-y-4">
-                                <div className="relative">
-                                    <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                                    <Input
-                                        placeholder="Full Name"
-                                        className="w-full pl-10"
-                                        value={fullName}
-                                        onChange={(e) => setFullName(e.target.value)}
-                                    />
+                                <div className="">
+                                    <div className="text-xs py-0.5">Full Name</div>
+                                    <div className="relative">
+                                        <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                        <Input
+                                            placeholder="Full Name"
+                                            className="w-full pl-10"
+                                            value={fullName}
+                                            onChange={(e) => setFullName(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="relative">
-                                    <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                                    <Input
-                                        placeholder="Email Address"
-                                        className="w-full pl-10"
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
+                                <div className="">
+                                    <div className="text-xs py-0.5">Email Address</div>
+                                    <div className="relative">
+                                        <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                        <Input
+                                            placeholder="Email Address"
+                                            className="w-full pl-10"
+
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="relative">
-                                    <FiMapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                                    <Input
-                                        placeholder="Shipping Address"
-                                        className="w-full pl-10"
-                                        value={shippingAddress}
-                                        onChange={(e) => setShippingAddress(e.target.value)}
-                                    />
+                                <div className="">
+                                    <div className="text-xs py-0.5">Shipping Address</div>
+                                    <div className="relative">
+                                        <FiMapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                        <Input
+                                            placeholder="Shipping Address"
+                                            className="w-full pl-10"
+                                            value={shippingAddress}
+                                            onChange={(e) => setShippingAddress(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="text-xs py-0.5">City</div>
+                                    <div className="relative">
+                                        <FaCity className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                        <Input
+                                            placeholder="City"
+                                            className="w-full pl-10"
+                                            value={city}
+                                            onChange={(e) => setcity(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="text-xs py-0.5">Phone</div>
+                                    <div className="relative">
+                                        <Phone className=" w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                        <Input
+                                            placeholder="Phone"
+                                            className="w-full pl-10"
+                                            value={formatPhoneNumber(phone)}
+                                            onChange={(e) => setphone(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="text-xs py-0.5">Code postal</div>
+                                    <div className="relative">
+                                        <LiaCitySolid className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                        <Input
+                                            placeholder="Code postal "
+                                            className="w-full pl-10"
+                                            value={codePostal}
+                                            onChange={(e) => setcodePostal(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="text-xs py-0.5">Notes</div>
+                                    <div className="relative">
+                                        <NotebookIcon className=" w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                        <Input
+                                            placeholder="Notes "
+                                            className="w-full pl-10"
+                                            value={notes}
+                                            onChange={(e) => setNotes(e.target.value)}
+                                        />
+                                    </div>
                                 </div>
                                 <Button
                                     onClick={handleNextStep}

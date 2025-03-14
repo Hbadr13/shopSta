@@ -209,7 +209,7 @@ const ShopNavbar = () => {
                             <FaSearch className="w-5 h-5" />
                         </button>
                     </div>
-                    <div className="  -translate-x-8 md:-translate-x-0  flex items-center space-x-0.5 md:space-x-6">
+                    <div className="  -translate-x-4 md:-translate-x-0  flex items-center space-x-0.5 md:space-x-6">
 
                         <Link href="/account" className="hidden lg:flex items-center font-semibold text-gray-700 gap-3 text-lg  hover:text-gray-500 transition">
                             Account
