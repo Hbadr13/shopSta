@@ -52,8 +52,6 @@ const accountSlice = createSlice({
             .addCase(getUserProfile.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.account = action.payload.account;
-                console.log('...', action.payload.account)
-                // state.message = action.payload.message;
             })
             .addCase(getUserProfile.rejected, (state) => {
                 state.isLoading = false;
@@ -99,7 +97,6 @@ const accountSlice = createSlice({
                 // state.account = action.payload.account;
                 state.message = action.payload.message;
                 state.isLoading = false;
-                console.log('delete', action.payload.message)
 
             })
             .addCase(deleteAddress.rejected, (state) => {

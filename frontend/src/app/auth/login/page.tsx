@@ -41,7 +41,6 @@ const Login = () => {
             const returnUrl = searchParams.get("return_url");
 
             if (data?.payload?.success) {
-                console.log("data?.payload.user", data?.payload.user)
                 if (data?.payload.user.role == 'admin')
                     route.push("/admin/dashboard");
                 else

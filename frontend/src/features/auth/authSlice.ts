@@ -53,7 +53,6 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.user = action.payload.success ? action.payload.user : null;
                 state.isAuthenticated = action.payload.success;
-                console.log('auth', state.user)
 
             })
             .addCase(checkAuth.rejected, (state) => {

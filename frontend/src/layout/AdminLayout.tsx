@@ -1,7 +1,7 @@
 "use client"
-import { checkAuth, logout } from "@/features/auth/authActions";
+import { logout } from "@/features/auth/authActions";
 import { AppDispatch, RootState } from "@/redux/store";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { FiBell, FiGrid, FiSettings } from "react-icons/fi";
 import SidebarComp from "@/layout/sidebar";
@@ -131,8 +131,8 @@ const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, l
                         <div className="flex items-center space-x-2">
                             <Image alt="s2" width={200} height={200} className="w-10 h-10 object-cover rounded-full" src="/profile-admin.png" />
                             <div className=" text-sm">
-                                <div className="font-semibold">{user?.firstName} {user?.lastName}</div>
-                                <div className="text-eco-black-v2">admin</div>
+                                <div className="">{user?.firstName} {user?.lastName}</div>
+                                {/* <div className="text-eco-black-v2">admin</div> */}
                             </div>
                         </div>
                     }
@@ -199,13 +199,6 @@ const PopupButton = ({ icon, color, label }: { icon: ReactNode, color: string, l
 }
 const AdminLayout = ({ children }: { children: ReactNode }) => {
     const { isLoading } = useSelector((state: RootState) => state.auth);
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(checkAuth());
-    }, [dispatch]);
-
-
     if (isLoading) return <div className="" />;
 
     return (

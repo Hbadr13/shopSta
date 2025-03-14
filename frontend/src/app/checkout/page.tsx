@@ -98,7 +98,6 @@ export default function CheckoutPage() {
             setEmail(user.email)
         }
         const addrs = account?.addresses.find((it) => it.isDefault)
-        console.log('addrs', addrs)
         if (addrs) {
             setShippingAddress(addrs.address1)
             setcity(addrs.city)
