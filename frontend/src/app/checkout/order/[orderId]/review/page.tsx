@@ -33,7 +33,7 @@ export default function OrderReviewPage() {
                             addToast({
                                 title: 'Order has already been paid',
                                 description: `Order Id: ${orderId}`,
-                                timeout: 3000,
+                                timeout: 2000,
                                 color: "success",
                                 shouldShowTimeoutProgress: true
 
@@ -51,7 +51,7 @@ export default function OrderReviewPage() {
                         title: state.payload.message,
                         description: `Order Id: ${orderId}`,
                         color: "danger",
-                        timeout: 3000,
+                        timeout: 2000,
                         shouldShowTimeoutProgress: true
                     })
 

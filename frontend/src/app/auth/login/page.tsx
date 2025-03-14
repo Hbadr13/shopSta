@@ -48,7 +48,7 @@ const Login = () => {
                     route.push(returnUrl || "/");
                 addToast({
                     title: data?.payload?.message,
-                    timeout: 3000,
+                    timeout: 2000,
                     color: 'success',
                     shouldShowTimeoutProgress: true
 
@@ -56,7 +56,7 @@ const Login = () => {
             } else {
                 addToast({
                     title: data?.payload?.message,
-                    timeout: 3000,
+                    timeout: 2000,
                     color: 'danger',
                     shouldShowTimeoutProgress: true
 
@@ -110,7 +110,7 @@ const Login = () => {
                         {showPassword ? <EyeOff className="w-7 h-7 mb-1 text-stone-500" /> : <Eye className="w-7 h-7 mb-1 text-stone-500" />}
                     </button>
                 </div>
-                <Button type="submit" className="mt-2 w-full">
+                <Button type="submit" className="active:opacity-70 py-2 transition-all duration-200 mt-2 w-full">
                     Sign In
                 </Button>
             </form>

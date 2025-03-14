@@ -100,10 +100,12 @@ const OrderHistoryPage = () => {
                     setLoading(false);
                 }
                 else {
+                    if (!state.payload.message)
+                        return
                     addToast({
                         title: state.payload.message,
                         color: "danger",
-                        timeout: 3000,
+                        timeout: 2000,
                         shouldShowTimeoutProgress: true
 
                     });

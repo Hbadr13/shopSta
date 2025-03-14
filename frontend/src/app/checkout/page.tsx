@@ -115,7 +115,7 @@ export default function CheckoutPage() {
                 addToast({
                     title: state.payload.message,
                     color: 'danger',
-                    timeout: 3000,
+                    timeout: 2000,
                     shouldShowTimeoutProgress: true,
 
                 });

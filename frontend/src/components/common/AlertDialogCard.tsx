@@ -21,7 +21,7 @@ interface IAlertDialogDemo {
 
 export function AlertDialogDemo({ cancelButton, actionButton, title, description, triggerButton, handelPressAction }: IAlertDialogDemo) {
     return (
-        <AlertDialog>
+        <AlertDialog >
             <AlertDialogTrigger asChild>
                 {triggerButton}
             </AlertDialogTrigger>
@@ -43,6 +43,7 @@ export function AlertDialogDemo({ cancelButton, actionButton, title, description
                     </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
+
         </AlertDialog>
     )
 }

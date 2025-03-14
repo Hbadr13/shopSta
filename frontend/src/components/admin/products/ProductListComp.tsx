@@ -83,7 +83,7 @@ const ProductListComp = ({ productList }: { productList: IApiProducts }) => {
         dispatch(deleteProduct(productId)).then((data) => {
             addToast({
                 title: data.payload.message,
-                timeout: 3000,
+                timeout: 2000,
                 shouldShowTimeoutProgress: true,
                 color: 'success'
 

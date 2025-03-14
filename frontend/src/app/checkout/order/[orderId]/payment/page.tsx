@@ -24,7 +24,7 @@ const Page = () => {
                         title: state.payload.message,
                         color: state.payload.message != 'Order has already been paid' ? 'danger' : 'success',
                         description: `Order id: ${orderId}`,
-                        timeout: 3000
+                        timeout: 2000
                     })
                     setTimeout(() => {
                         if (state.payload.message == 'Order has already been paid')

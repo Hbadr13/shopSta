@@ -50,7 +50,7 @@ export default function OrderDetailsPage() {
                         title: state.payload.message,
                         description: `Order Id: ${orderId}`,
                         color: "danger",
-                        timeout: 3000,
+                        timeout: 2000,
                         shouldShowTimeoutProgress: true
                     });
                 }

@@ -4,24 +4,15 @@ import { Button } from "@/components/ui/button";
 import { FiShoppingCart, FiHeart, FiTruck, FiShield, FiMail, FiLinkedin } from "react-icons/fi";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const teamMembers = [
     {
         name: "Hamza Badr",
         role: "Founder & CEO",
-        imgSrc: "/man1.png",
+        imgSrc: "/hbadr.png",
         email: "hamzabadrbus@gmail.com",
         linkedin: "https://www.linkedin.com/in/hamza-badr",
-    },
-    {
-        name: "Jane Smith",
-        role: "Head of Operations",
-        imgSrc: "/woman1.png",
-    },
-    {
-        name: "Mike Johnson",
-        role: "Marketing Director",
-        imgSrc: "/man2.png",
     },
 ];
 
@@ -56,7 +47,7 @@ const fadeInUp = {
 const TeamMemberCard = ({ name, role, imgSrc, email, linkedin }: (typeof teamMembers)[0]) => (
     <motion.div
         variants={fadeInUp}
-        className="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        className="text-center w-full max-w-xl p-6 bg-white rounded-lg shadow border hover:shadow-lg transition-shadow"
     >
         <Image src={imgSrc} alt={name} width={200} height={200} className="w-48 h-48 rounded-full mx-auto" />
         <h3 className="mt-4 text-xl font-semibold">{name}</h3>
@@ -87,6 +78,7 @@ const FeatureCard = ({ title, description, icon }: (typeof features)[0]) => (
 );
 
 export default function AboutUsPage() {
+    const route = useRouter()
     return (
         <div className="">
             {/* Hero Section */}
@@ -99,7 +91,7 @@ export default function AboutUsPage() {
             >
                 <h1 className="text-4xl font-bold">Welcome to Shopsta</h1>
                 <p className="mt-4 text-lg text-gray-600">Your one-stop destination for high-quality products and exceptional customer service.</p>
-                <Button className="active:opacity-70 transition-all duration-200 mt-6 bg-black text-white h-12 rounded-full px-8">
+                <Button onClick={() => route.push('/products/all/best-seller')} className="active:opacity-70 transition-all duration-200 mt-6 bg-black text-white h-12 rounded-full px-8">
                     <FiShoppingCart className="mr-2" /> Shop Now
                 </Button>
             </motion.div>
@@ -129,7 +121,7 @@ export default function AboutUsPage() {
                 {/* Our Team */}
                 <div className="mt-16">
                     <h2 className="text-3xl font-bold text-center">Our Team</h2>
-                    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="mt-8 flex justify-center">
                         {teamMembers.map((member, index) => (
                             <TeamMemberCard key={index} {...member} />
                         ))}
@@ -151,7 +143,7 @@ export default function AboutUsPage() {
             <motion.div initial="hidden" whileInView="visible" variants={fadeInUp} transition={{ duration: 0.8 }} className="mt-20 lg:mt-32 text-center py-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
                 <h2 className="text-3xl font-bold">Ready to Explore?</h2>
                 <p className="mt-4 text-lg text-gray-600">Discover our collection of products and experience the Shopsta difference.</p>
-                <Button className="active:opacity-70 transition-all duration-200 mt-6 bg-black text-white h-12 rounded-full px-8">
+                <Button onClick={() => route.push('/products/all/best-seller')} className="active:opacity-70 transition-all duration-200 mt-6 bg-black text-white h-12 rounded-full px-8">
                     <FiShoppingCart className="mr-2" /> Start Shopping
                 </Button>
             </motion.div>

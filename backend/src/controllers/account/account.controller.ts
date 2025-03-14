@@ -24,7 +24,7 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
 
 export const updateUser = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { userName, lastName } = req.body;
+        const { firstName, lastName } = req.body;
 
         if (!req.user) {
             res.status(401).json({ success: false, message: "Unauthenticated user" });
@@ -34,7 +34,7 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
         const userId = typeof req.user === "string" ? req.user : req.user._id;
         const updatedUser = await User.findByIdAndUpdate(
             userId,
-            { userName, lastName },
+            { firstName, lastName },
             { new: true, runValidators: true }
         ).select("-password");
 

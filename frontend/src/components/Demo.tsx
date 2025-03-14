@@ -48,7 +48,7 @@ const Demo = (
                                 <NewsletterPopup />
                             </>
                         }
-                        <div className=" ">
+                        <div className={`${pathname.startsWith('/admin') ? '' : 'pt-[120px]'}`}>
                             {children}
                         </div>
                         {

@@ -20,7 +20,30 @@ const FavoriteProducts: React.FC = () => {
     const handelRemoveFromFav = (productId: string) => {
         dispatch(deleteProductFromFavorites({ productId }));
     };
-
+    if (!favorites || loadingStatus === "Loading favorites")
+        return (
+            <div className="min-h-screen bg-gray-50 py-8">
+                <div className="container mx-auto px-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {
+                            [...Array(4)].map((_, index) => (
+                                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                                    <div className="animate-pulse space-y-4 p-4">
+                                        <div className="bg-gray-200 w-full h-48 rounded-md"></div>
+                                        <div className="bg-gray-200 h-6 rounded-md"></div>
+                                        <div className="bg-gray-200 h-6 rounded-md w-3/4"></div>
+                                        <div className="flex justify-between items-center space-x-2">
+                                            <div className="bg-gray-200 h-6 w-1/3 rounded-md"></div>
+                                            <div className="bg-gray-200 h-6 w-1/3 rounded-md"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        )
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="container mx-auto px-4">
@@ -42,21 +65,7 @@ const FavoriteProducts: React.FC = () => {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {loadingStatus === "Loading favorites" ? (
-                            [...Array(4)].map((_, index) => (
-                                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                                    <div className="animate-pulse space-y-4 p-4">
-                                        <div className="bg-gray-200 w-full h-48 rounded-md"></div>
-                                        <div className="bg-gray-200 h-6 rounded-md"></div>
-                                        <div className="bg-gray-200 h-6 rounded-md w-3/4"></div>
-                                        <div className="flex justify-between items-center space-x-2">
-                                            <div className="bg-gray-200 h-6 w-1/3 rounded-md"></div>
-                                            <div className="bg-gray-200 h-6 w-1/3 rounded-md"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
+                        {
                             favorites.map((product) => (
                                 <div key={product._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                                     <Image
@@ -89,7 +98,7 @@ const FavoriteProducts: React.FC = () => {
                                     </div>
                                 </div>
                             ))
-                        )}
+                        }
                     </div>
                 )}
             </div>

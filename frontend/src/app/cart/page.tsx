@@ -14,7 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { FiArrowLeft, FiTrash2 } from "react-icons/fi";
+import { FiShoppingBag, FiTrash2 } from "react-icons/fi";
 
 export default function CartPage() {
     const { user } = useAppSelector((state) => state.auth)
@@ -36,7 +36,15 @@ export default function CartPage() {
             setLoading(false)
         }, 600);
     }, [])
+    const [windowWidth, setWindowWidth] = useState<number>(window ? window.innerWidth : 0)
+    useEffect(() => {
+        const updateWindowWidth = () => {
+            setWindowWidth(window.innerWidth)
+        };
 
+        window.addEventListener("resize", updateWindowWidth);
+        return () => window.removeEventListener("resize", updateWindowWidth);
+    }, []);
     const handleCheckout = () => {
         if (!subtotal) return;
         setWaiting(true)
@@ -133,20 +141,27 @@ export default function CartPage() {
                             </div>
                         ))
                     ) : (
-                        <div className="text-xl w-full flex flex-col items-center space-y-4  text-center py-4">
-                            <div className="">
-                                Your cart is empty.
+                        <div className="flex flex-col items-center justify-center py-14 md:py-24 text-center text-lg text-gray-600">
+                            <div className="bg-gray-100 p-4 md:p-6 rounded-full mb-4">
+                                <FiShoppingBag className="w-14 h-14 md:w-16 md:h-16 text-gray-400" />
                             </div>
-                            <Button variant="outline" className="active:opacity-60 transition-all duration-200 w-max" size="sm" onClick={() => router.push('/')}>
-                                <FiArrowLeft /> Back to Home
-                            </Button>
-                        </div>)}
+                            <p className="mb-2">Your order history is empty.</p>
+                            <p className="mb-4">Start shopping and place your first order!</p>
+                            <Link
+                                href="/products/all/best-seller"
+                                className="text-store-dark hover:text-store-dark/80 font-semibold border border-store-dark px-4 py-2 rounded-md transition-all"
+                            >
+                                Browse Products
+                            </Link>
+                        </div>
+                    )
+                    }
                 </div>
 
             </div>
-            <div style={{ height: `${(cart.length || 1) * 500}px` }} className={`w-full pc:w-2/5 bg-white rounded-lg p-4`}>
-                <div className=" sticky top-10 space-y-4">
-                    <h2 className="text-2xl font-bold p-0 md:p-2">Summary</h2>
+            <div style={{ height: windowWidth > 768 ? `${(cart.length || 1) * 500}px` : 'auto' }} className={`w-full pc:w-2/5 bg-white rounded-lg p-4`}>
+                <div className=" md:sticky top-10 space-y-4">
+                    <h2 className="text-2xl font-bold p-0 md:p-2  border-t md:border-t-0">Summary</h2>
                     <div className="flex items-center space-x-2">
                         <Input placeholder="Promo Code" className="flex-1" />
                         <Button className="active:opacity-60 transition-all duration-200" variant="outline">Apply</Button>
