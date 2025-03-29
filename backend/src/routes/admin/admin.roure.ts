@@ -1,4 +1,4 @@
-import { editOrderStatusByAdmin, getAllOrderByAdmin } from "src/controllers/admin/orders.controller";
+import { editOrderStatusByAdmin, getAllOrderByAdmin } from "../../controllers/admin/orders.controller";
 import { addNewProduct, deleteProduct, getAllProducts, getProductById } from "../../controllers/admin/product.controller";
 import userRouter from "../../routes/user/user.route";
 import { Router } from "express";

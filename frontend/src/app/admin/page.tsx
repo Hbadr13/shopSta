@@ -2,7 +2,6 @@
 import { useAppSelector } from '@/redux/redux-hooks'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
-"use client";
 
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { FaShoppingBag, FaDollarSign, FaUsers } from "react-icons/fa";
