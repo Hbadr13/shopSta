@@ -10,7 +10,6 @@ import { getAllProducts } from '@/features/admin/productActions';
 import { FaArrowTrendDown } from "react-icons/fa6";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { getAllProductsByAdmin } from '@/features/admin/ordersActions'
-import { FaCreditCard, FaMoneyBillWave, FaPaypal } from 'react-icons/fa'
 
 const LastOrders = () => {
     const dispatch = useAppDispatch()
@@ -19,15 +18,15 @@ const LastOrders = () => {
         dispatch(getAllProductsByAdmin())
     }, [dispatch])
 
-    const getPaymentIcon = (method: string) => {
-        switch (method) {
-            case 'credit_card': return <FaCreditCard className="inline mr-1" />
-            case 'cod': return <FaMoneyBillWave className="inline mr-1" />
-            case 'paypal': return <FaPaypal className="inline mr-1" />
-            case 'stripe': return <FaCreditCard className="inline mr-1" />
-            default: return null
-        }
-    }
+    // const getPaymentIcon = (method: string) => {
+    //     switch (method) {
+    //         case 'credit_card': return <FaCreditCard className="inline mr-1" />
+    //         case 'cod': return <FaMoneyBillWave className="inline mr-1" />
+    //         case 'paypal': return <FaPaypal className="inline mr-1" />
+    //         case 'stripe': return <FaCreditCard className="inline mr-1" />
+    //         default: return null
+    //     }
+    // }
 
     const getStatusColor = (status: string) => {
         switch (status) {
@@ -127,17 +126,6 @@ const LastOrders = () => {
         </div>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 const statsData = [
@@ -316,7 +304,7 @@ const TopCustomersData = [
     }
 ]
 const TopCustomers = () => {
-    const { isLoading, productList } = useAppSelector((state) => state.adminProduct)
+    const { productList } = useAppSelector((state) => state.adminProduct)
     if (!productList)
         return <div className=""></div>
     return (
@@ -350,7 +338,7 @@ const TopCustomers = () => {
     );
 }
 const TopSellingProduct = () => {
-    const { isLoading, productList } = useAppSelector((state) => state.adminProduct)
+    const { productList } = useAppSelector((state) => state.adminProduct)
     if (!productList)
         return <div className=""></div>
     return (

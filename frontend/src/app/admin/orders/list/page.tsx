@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '@/redux/redux-hooks'
 import { addToast } from '@heroui/react'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { FaEye, FaTrash, FaTruck, FaCreditCard, FaMoneyBillWave, FaPaypal } from 'react-icons/fa'
-import { FiCheckCircle, FiChevronDown, FiClock, FiRefreshCw, FiTruck, FiXCircle, FiXOctagon } from 'react-icons/fi'
+import { FaEye, FaTrash, FaCreditCard, FaMoneyBillWave, FaPaypal } from 'react-icons/fa'
+import { FiCheckCircle, FiChevronDown, FiClock, FiRefreshCw, FiTruck, FiXOctagon } from 'react-icons/fi'
 
 const Page = () => {
   const dispatch = useAppDispatch()

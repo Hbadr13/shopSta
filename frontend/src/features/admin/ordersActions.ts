@@ -1,4 +1,3 @@
-import { IInitialFormDataProps } from "@/app/admin/products/add/page";
 import axiosInstance from "@/lib/axiosInstance";
 import { handleAxiosError } from "@/lib/axiosInstanceError";
 import { createAsyncThunk } from "@reduxjs/toolkit";

@@ -28,7 +28,7 @@ const adminOrdersSlice = createSlice({
             state.ordersList = action.payload.orders
             state.isLoading = false
 
-        }).addCase(changeOrderStatus.pending, (state) => {
+        }).addCase(changeOrderStatus.pending, () => {
 
         }).addCase(changeOrderStatus.rejected, (state) => {
             state.ordersList = null
