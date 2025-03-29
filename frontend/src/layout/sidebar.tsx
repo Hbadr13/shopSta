@@ -60,7 +60,7 @@ const sidebarNavigation = [
         slug: "",
         children: [
             { id: 41, name: "Order list", slug: "/admin/orders/list" },
-            { id: 42, name: "Order detail", slug: "/admin/orders/detail" },
+            { id: 42, name: "Order detail", slug: "/admin/orders/details" },
             { id: 43, name: "Order tracking", slug: "/admin/orders/tracking" },
         ],
     },

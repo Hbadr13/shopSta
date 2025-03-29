@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from '../features/auth/authSlice'
 import adminProductSlice from '../features/admin/productSlice'
+import orderstSlice from '../features/admin/orderstSlice'
 import shopProductSlice from '../features/shop/productSlice'
 import cartReducer from '../features/shop/cartSlice'
 import storage from "redux-persist/lib/storage";
@@ -22,6 +23,7 @@ const store = configureStore({
         cart: persistedCartReducer,
         auth: authReducer,
         adminProduct: adminProductSlice,
+        adminOrders: orderstSlice,
         shopProductSlice: shopProductSlice,
         shopOrderSlices: shopOrderSlices,
         windowPropsSlice: windowPropsSlice,

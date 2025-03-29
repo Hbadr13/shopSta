@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from 'jsonwebtoken'
 export const adminMiddleware: any = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const token = req.cookies.token;
+        const token = req.headers.authorization;
         if (!token) {
             return res.status(401).json({
                 success: false,
